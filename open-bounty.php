@@ -14,7 +14,7 @@
  * Text Domain:       open-bounty
  *
  * WC requires at least: 8.0
- * WC tested up to:      10.2
+ * WC tested up to:      11.2
  */
 
 defined( 'ABSPATH' ) || exit;
