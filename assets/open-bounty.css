@@ -1,0 +1,26 @@
+/* Open Bounty — "Rewards on this purchase". Inherits the theme's type and colour. */
+.open-bounty {
+	margin: 1em 0 1.5em;
+	padding: 0.85em 1em;
+	border: 1px solid currentColor;
+	border-color: color-mix(in srgb, currentColor 18%, transparent);
+	border-radius: 6px;
+	font-size: 0.95em;
+	line-height: 1.45;
+}
+.open-bounty p {
+	margin: 0;
+}
+.open-bounty__heading {
+	font-size: 0.8em;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	opacity: 0.75;
+	margin-bottom: 0.3em !important;
+}
+.open-bounty__program {
+	margin-top: 0.35em !important;
+	font-size: 0.85em;
+	opacity: 0.8;
+}

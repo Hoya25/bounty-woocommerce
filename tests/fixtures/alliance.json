@@ -1,0 +1,22 @@
+{
+  "bounty_schema_version": "0.3",
+  "active": true,
+  "program": {
+    "name": "NCTR Alliance",
+    "url": "https://themall.nctr.live"
+  },
+  "earn": {
+    "display": "Members earn NCTR on every purchase — earning grows with status.",
+    "denomination": "NCTR",
+    "type": "token"
+  },
+  "status": {
+    "url": "https://themall.nctr.live/status",
+    "note": "Standing unlocks sponsored rewards; earning rates rise with status."
+  },
+  "tokens": [
+    "https://api.nctr.live/v1/tokens/nctr"
+  ],
+  "api": "https://api.nctr.live/v1/bounties",
+  "updated_at": "2026-10-14"
+}
