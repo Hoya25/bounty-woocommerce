@@ -13,8 +13,12 @@
  *     here as SHA-256 digests rather than as text, because this file is public
  *     and the names must not be published, not even in a denylist.
  *
- * The gate runs when a merchant saves (nothing that fails is written) and again
- * on every render (nothing that fails is shown). Fail closed both times.
+ * WHERE IT APPLIES (ruled 2026-10-14): only to an object that speaks for the
+ * NCTR Alliance (program named NCTR Alliance, or a program URL on nctr.live).
+ * A merchant's own reward is the merchant's sentence, published as they wrote
+ * it, with schema validation only. For alliance objects the gate runs when a
+ * merchant saves (nothing that fails is written) and again on every render
+ * (nothing that fails is shown). Fail closed both times.
  *
  * @package OpenBounty
  */
@@ -92,6 +96,40 @@ final class Open_Bounty_Gate {
 			}
 		}
 		return false;
+	}
+
+	/** True when the program is the NCTR Alliance, by name or by an nctr.live URL. */
+	public static function is_alliance_program( $program ) {
+		if ( ! is_array( $program ) ) {
+			return false;
+		}
+		if ( isset( $program['name'] ) && 'nctr alliance' === strtolower( trim( (string) $program['name'] ) ) ) {
+			return true;
+		}
+		$host = isset( $program['url'] ) ? strtolower( (string) wp_parse_url( (string) $program['url'], PHP_URL_HOST ) ) : '';
+		return 'nctr.live' === $host || ( strlen( $host ) > 10 && '.nctr.live' === substr( $host, -10 ) );
+	}
+
+	/** Register-rule hits for an object: always empty unless it speaks for the alliance. */
+	public static function register_hits( $object ) {
+		if ( ! is_array( $object ) || ! self::is_alliance_program( isset( $object['program'] ) ? $object['program'] : null ) ) {
+			return array();
+		}
+		$result = self::scan( $object );
+		return $result['hits'];
+	}
+
+	/**
+	 * True when $payload (default: the object itself) may be shown for $object:
+	 * always for a merchant's own program; for an alliance object, only when the
+	 * payload passes the gate.
+	 */
+	public static function allows( $object, $payload = null ) {
+		$program = is_array( $object ) && isset( $object['program'] ) ? $object['program'] : null;
+		if ( ! self::is_alliance_program( $program ) ) {
+			return true;
+		}
+		return self::is_clean( null === $payload ? $object : $payload );
 	}
 
 	/** True when the payload passes the gate. */

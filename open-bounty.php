@@ -3,7 +3,7 @@
  * Plugin Name:       Open Bounty
  * Plugin URI:        https://github.com/Hoya25/bounty-woocommerce
  * Description:       Tell AI shopping agents what a purchase at your store pays the shopper. Publishes an Open Bounty Schema object at /.well-known/bounty.json and on every product page.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'OPEN_BOUNTY_VERSION', '1.1.0' );
+define( 'OPEN_BOUNTY_VERSION', '1.2.0' );
 define( 'OPEN_BOUNTY_FILE', __FILE__ );
 define( 'OPEN_BOUNTY_DIR', __DIR__ );
 

@@ -6,7 +6,8 @@
  * the honesty rules hold everywhere at once:
  *   - earn.display is shown VERBATIM — never reworded, never shortened, never
  *     decorated with a number. Nothing here adds a rate or a digit.
- *   - an object that fails the gate renders as nothing, not as a redacted copy.
+ *   - an NCTR Alliance object that fails the gate renders as nothing, not as a
+ *     redacted copy. A merchant's own sentence is theirs and renders as written.
  *   - an inactive object renders no product claim: active:false is an honest
  *     "not right now", and a product page saying "Rewards on this purchase"
  *     beside it would contradict it.
@@ -22,7 +23,7 @@ final class Open_Bounty_Render {
 
 	/** The body served at /.well-known/bounty.json, or null if it must not be served. */
 	public static function well_known_body( $object ) {
-		if ( ! is_array( $object ) || ! Open_Bounty_Gate::is_clean( $object ) ) {
+		if ( ! is_array( $object ) || ! Open_Bounty_Gate::allows( $object ) ) {
 			return null;
 		}
 		return wp_json_encode( $object, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
@@ -54,7 +55,7 @@ final class Open_Bounty_Render {
 		if ( ! empty( $object['api'] ) ) {
 			$property['url'] = $object['api'];
 		}
-		return Open_Bounty_Gate::is_clean( $property ) ? $property : null;
+		return Open_Bounty_Gate::allows( $object, $property ) ? $property : null;
 	}
 
 	/** The visible "Rewards on this purchase" block, or '' when there is nothing true to say. */
@@ -74,7 +75,7 @@ final class Open_Bounty_Render {
 			esc_url( $object['program']['url'] ),
 			esc_html( $object['program']['name'] )
 		);
-		return Open_Bounty_Gate::is_clean( $html ) ? $html : '';
+		return Open_Bounty_Gate::allows( $object, $html ) ? $html : '';
 	}
 
 	/** True when the object makes a claim a product page may repeat. */
@@ -82,6 +83,6 @@ final class Open_Bounty_Render {
 		return is_array( $object )
 			&& ! empty( $object['active'] )
 			&& isset( $object['earn']['display'], $object['program']['name'], $object['program']['url'] )
-			&& Open_Bounty_Gate::is_clean( $object );
+			&& Open_Bounty_Gate::allows( $object );
 	}
 }

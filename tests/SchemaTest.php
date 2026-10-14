@@ -66,9 +66,22 @@ final class SchemaTest extends TestCase {
 		$this->assertSame( array(), Open_Bounty_Schema::check( self::own( array( 'earn_display' => str_repeat( 'é', 200 ) ) ), self::schema() ) );
 	}
 
-	public function test_banned_vocabulary_fails_the_save_even_when_the_schema_passes() {
-		$issues = Open_Bounty_Schema::check( self::own( array( 'earn_display' => 'Earn cash back on every order.' ) ), self::schema() );
+	/** Ruled 2026-10-14: open path = schema only; alliance path = schema + register rules. */
+	public function test_five_percent_cash_back_publishes_on_the_open_path() {
+		$this->assertSame( array(), Open_Bounty_Schema::check( self::own( array( 'earn_display' => '5% cash back on every order' ) ), self::schema() ) );
+	}
+
+	public function test_five_percent_cash_back_is_refused_on_the_alliance_path() {
+		$alliance                    = json_decode( file_get_contents( __DIR__ . '/fixtures/alliance.json' ), true );
+		$alliance['earn']['display'] = '5% cash back on every order';
+		$issues                      = Open_Bounty_Schema::check( $alliance, self::schema() );
 		$this->assertSame( array( 'earn.display' ), array_column( $issues, 'field' ) );
+		$this->assertStringContainsString( 'cash back', $issues[0]['message'] );
+	}
+
+	public function test_the_open_path_still_enforces_the_schema() {
+		$this->assertNotSame( array(), Open_Bounty_Schema::check( self::own( array( 'earn_display' => '' ) ), self::schema() ) );
+		$this->assertNotSame( array(), Open_Bounty_Schema::check( self::own( array( 'earn_display' => str_repeat( 'a', 201 ) ) ), self::schema() ) );
 	}
 
 	public function test_every_zero_x_version_is_accepted() {

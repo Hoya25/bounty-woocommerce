@@ -82,14 +82,32 @@ final class DisclosureGateTest extends TestCase {
 		$this->assertArrayNotHasKey( 'url', Open_Bounty_Render::offer_property( $own ), 'no api, no url' );
 	}
 
-	public function test_a_banned_sentence_renders_nothing_anywhere() {
-		foreach ( array( 'Get 5% cashback on everything.', 'Earn yield on every order.', 'Purchases are an investment in your future.' ) as $bad ) {
-			$o = self::objects()['own reward'][0];
+	/** Ruled 2026-10-14: the merchant's sentence is theirs on the open path. */
+	public function test_the_merchants_own_sentence_renders_as_written() {
+		$o                    = self::objects()['own reward'][0];
+		$o['earn']['display'] = '5% cash back on every order';
+		$this->assertSame( '5% cash back on every order', json_decode( Open_Bounty_Render::well_known_body( $o ), true )['earn']['display'] );
+		$this->assertSame( '5% cash back on every order', Open_Bounty_Render::offer_property( $o )['value'] );
+		$this->assertStringContainsString( '5% cash back on every order', Open_Bounty_Render::product_block( $o ) );
+	}
+
+	/** On anything that speaks for the NCTR Alliance, the register rules hold everywhere. */
+	public function test_an_alliance_object_with_banned_copy_renders_nothing_anywhere() {
+		foreach ( array( '5% cash back on every order', 'Earn yield on every order.', 'Purchases are an investment in your future.' ) as $bad ) {
+			$o                    = self::objects()['NCTR Alliance (live object)'][0];
 			$o['earn']['display'] = $bad;
 			$this->assertNull( Open_Bounty_Render::well_known_body( $o ), $bad );
 			$this->assertNull( Open_Bounty_Render::offer_property( $o ), $bad );
 			$this->assertSame( '', Open_Bounty_Render::product_block( $o ), $bad );
 		}
+	}
+
+	public function test_an_object_claiming_the_alliance_by_url_is_held_to_its_rules() {
+		$o                    = self::objects()['own reward'][0];
+		$o['program']['url']  = 'https://themall.nctr.live/x';
+		$o['earn']['display'] = '5% cash back on every order';
+		$this->assertNull( Open_Bounty_Render::well_known_body( $o ) );
+		$this->assertFalse( Open_Bounty_Gate::is_alliance_program( array( 'name' => 'Club', 'url' => 'https://notnctr.live' ) ) );
 	}
 
 	public function test_an_inactive_bounty_makes_no_product_claim() {

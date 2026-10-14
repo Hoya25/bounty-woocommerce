@@ -26,6 +26,7 @@ function delete_option( $k ) { unset( $GLOBALS['ob_options'][ $k ] ); return tru
 function get_transient( $k ) { return array_key_exists( $k, $GLOBALS['ob_transients'] ) ? $GLOBALS['ob_transients'][ $k ] : false; }
 function set_transient( $k, $v ) { $GLOBALS['ob_transients'][ $k ] = $v; return true; }
 function delete_transient( $k ) { unset( $GLOBALS['ob_transients'][ $k ] ); return true; }
+function wp_parse_url( $u, $c = -1 ) { return parse_url( $u, $c ); }
 function is_wp_error( $x ) { return $x instanceof WP_Error; }
 class WP_Error { public function __construct( public $code = '', public $message = '' ) {} public function get_error_message() { return $this->message; } }
 

@@ -30,7 +30,7 @@ Before you publish, none of this exists. Your store looks exactly as it did befo
 
 You need WordPress 6.4 or later, WooCommerce 8.0 or later, and PHP 7.4 or later.
 
-1. Download **`open-bounty-1.1.0.zip`** from the
+1. Download **`open-bounty-1.2.0.zip`** from the
    [Releases page](https://github.com/Hoya25/bounty-woocommerce/releases). Don't unzip it.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, choose the zip, and click
    **Install Now**, then **Activate**.
@@ -69,14 +69,15 @@ something's wrong, you'll see a red **Nothing was published** box listing what t
 changes on your store. When it succeeds you'll see **Published**, the standard version it was
 checked against, and the address where agents can now read it.
 
-### Wording the plugin won't publish
+### Your sentence is yours
 
-Agents present your sentence as a promise to shoppers, so the plugin refuses language that makes
-a reward sound like a financial product. That includes "cash back", "yield", "APY", "invest" and
-"returns on". Describe what the shopper gets, for example:
+When you describe your own reward, the plugin publishes your sentence exactly as you wrote it.
+It only checks that it's present, one sentence of at most 200 characters, and that the
+program name and URL are filled in. Write what every qualifying purchase actually pays, because
+agents repeat it to shoppers word for word.
 
-- **Instead of** "Get 5% cash back"
-- **Write** "Members earn a cash reward on every order"
+(The **NCTR Alliance** option is different: that sentence is the alliance's, and it's published
+only if it meets the alliance's own wording rules.)
 
 ## Check that it worked
 

@@ -154,11 +154,21 @@ console.log('\nAlliance without the confirmation is refused');
   ok((await wellKnown()).res.status() === 404, 'well-known still 404');
 }
 
-console.log('\nA banned sentence is refused');
+console.log('\nThe merchant\'s own sentence is theirs: "5% cash back on every order" publishes');
 {
-  const notice = await save({ mode: 'own', own: { ...OWN, earn_display: 'Get cash back on every order.' } });
-  ok(/Nothing was published/.test(notice) && /cash back/.test(notice), 'refused, names the term');
-  ok((await wellKnown()).res.status() === 404, 'well-known still 404');
+  const sentence = '5% cash back on every order';
+  const notice = await save({ mode: 'own', own: { ...OWN, earn_display: sentence } });
+  ok(/Published\./.test(notice), 'published on the open path');
+  const { res, body } = await wellKnown();
+  ok(res.status() === 200 && body.earn.display === sentence, 'served verbatim at the well-known path');
+  const html = await (await http.get(PRODUCT)).text();
+  ok(offerProperty(html)?.value === sentence, 'JSON-LD carries it verbatim');
+  await page.goto(PRODUCT);
+  ok((await page.locator('.open-bounty').innerText()).includes(sentence), 'the block shows it verbatim');
+  await page.goto(SETTINGS);
+  await page.click('#open_bounty_unpublish');
+  await page.waitForLoadState('networkidle');
+  ok((await wellKnown()).res.status() === 404, 'unpublished again for the next case');
 }
 
 console.log('\nSmile.io on a WooCommerce store: refused, nothing published');

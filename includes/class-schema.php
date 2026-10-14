@@ -74,7 +74,7 @@ final class Open_Bounty_Schema {
 	}
 
 	/**
-	 * Schema validation, then the version rule, then the disclosure gate.
+	 * Schema validation, then the version rule, then (alliance objects only) the register rules.
 	 *
 	 * @param array $doc    The bounty object.
 	 * @param array $schema The fetched schema.
@@ -93,13 +93,14 @@ final class Open_Bounty_Schema {
 			);
 		}
 
-		// A perfectly valid object can still describe the reward as a financial
-		// product. That is never written and never shown.
-		$gate = Open_Bounty_Gate::scan( $doc );
-		if ( ! $gate['clean'] ) {
+		// Register rules, for alliance objects only. A merchant's own sentence is
+		// theirs; an object that speaks for the NCTR Alliance is held to the
+		// alliance's copy rules (ruled 2026-10-14).
+		$hits = Open_Bounty_Gate::register_hits( $doc );
+		if ( $hits ) {
 			$issues[] = array(
 				'field'   => 'earn.display',
-				'message' => 'contains language that cannot be published: ' . implode( ', ', $gate['hits'] ),
+				'message' => 'contains language the NCTR Alliance cannot publish: ' . implode( ', ', $hits ),
 			);
 		}
 		return $issues;
