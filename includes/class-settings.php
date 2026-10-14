@@ -76,6 +76,16 @@ final class Open_Bounty_Settings {
 		}
 
 		$issues = array();
+		if ( 'smile' === $s['mode'] ) {
+			// Stub: the Smile.io adapter lands in the next build. Until it does,
+			// choosing it publishes nothing rather than something untrue.
+			self::$result = array(
+				'ok'     => false,
+				'form'   => $s,
+				'issues' => array( array( 'field' => 'Smile.io', 'message' => __( 'Reading your Smile.io program is not available yet, so nothing was published.', 'open-bounty' ) ) ),
+			);
+			return;
+		}
 		if ( 'alliance' === $s['mode'] ) {
 			$object = Open_Bounty_Schema::fetch_json( Open_Bounty_Schema::ALLIANCE_URL );
 			if ( is_wp_error( $object ) ) {
@@ -129,7 +139,7 @@ final class Open_Bounty_Settings {
 		$type = $text( 'earn_type' );
 
 		$s = array(
-			'mode'               => 'own' === $text( 'mode' ) ? 'own' : 'alliance',
+			'mode'               => in_array( $text( 'mode' ), array( 'own', 'smile' ), true ) ? $text( 'mode' ) : 'alliance',
 			'alliance_confirmed' => ! empty( $_POST['alliance_confirmed'] ),
 			'program_name'       => $text( 'program_name' ),
 			'program_url'        => $url( 'program_url' ),
@@ -154,6 +164,7 @@ final class Open_Bounty_Settings {
 		$published = Open_Bounty_Store::published();
 		$current   = Open_Bounty_Store::current();
 		$own       = 'own' === $s['mode'];
+		$smile     = 'smile' === $s['mode'];
 		?>
 		<div class="wrap open-bounty-admin">
 			<h1><?php esc_html_e( 'Bounty', 'open-bounty' ); ?></h1>
@@ -170,7 +181,7 @@ final class Open_Bounty_Settings {
 				<h2><?php esc_html_e( 'Which program funds your bounty?', 'open-bounty' ); ?></h2>
 				<fieldset class="open-bounty-choice">
 					<label style="display:block;margin:0 0 .6em">
-						<input type="radio" name="mode" value="alliance" <?php checked( ! $own ); ?> />
+						<input type="radio" name="mode" value="alliance" <?php checked( ! $own && ! $smile ); ?> />
 						<strong><?php esc_html_e( 'NCTR Alliance', 'open-bounty' ); ?></strong>
 						— <?php esc_html_e( 'fetched live from the alliance, so its sentence stays current without you editing anything.', 'open-bounty' ); ?>
 					</label>
@@ -178,6 +189,11 @@ final class Open_Bounty_Settings {
 						<input type="radio" name="mode" value="own" <?php checked( $own ); ?> />
 						<strong><?php esc_html_e( 'Describe your own reward', 'open-bounty' ); ?></strong>
 						— <?php esc_html_e( 'any rewards program: points, store credit, a gift, a cash reward.', 'open-bounty' ); ?>
+					</label>
+					<label style="display:block;margin-top:.6em">
+						<input type="radio" name="mode" value="smile" <?php checked( $smile ); ?> />
+						<strong><?php esc_html_e( 'Use my Smile.io program', 'open-bounty' ); ?></strong>
+						— <?php esc_html_e( 'reads your points program\'s earning rule directly from Smile.io.', 'open-bounty' ); ?>
 					</label>
 				</fieldset>
 
@@ -192,6 +208,10 @@ final class Open_Bounty_Settings {
 							<p class="description"><?php esc_html_e( 'Only tick this if your store is connected to the alliance. The alliance\'s sentence is a promise to shoppers; it has to be true here.', 'open-bounty' ); ?></p>
 						</td>
 					</tr>
+				</table>
+
+				<table class="form-table" role="presentation" data-mode="smile">
+					<tr><td style="padding-left:0"><p class="description"><?php esc_html_e( 'Coming in the next release. Choosing it now publishes nothing.', 'open-bounty' ); ?></p></td></tr>
 				</table>
 
 				<table class="form-table" role="presentation" data-mode="own">
