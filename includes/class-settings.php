@@ -76,17 +76,21 @@ final class Open_Bounty_Settings {
 		}
 
 		$issues = array();
+		$provenance = null;
 		if ( 'smile' === $s['mode'] ) {
-			// Stub: the Smile.io adapter lands in the next build. Until it does,
-			// choosing it publishes nothing rather than something untrue.
-			self::$result = array(
-				'ok'     => false,
-				'form'   => $s,
-				'issues' => array( array( 'field' => 'Smile.io', 'message' => __( 'Reading your Smile.io program is not available yet, so nothing was published.', 'open-bounty' ) ) ),
-			);
-			return;
-		}
-		if ( 'alliance' === $s['mode'] ) {
+			// Read live at save. The sentence comes from the rule, never the form.
+			$read = Open_Bounty_Smile::read( home_url( '/' ) );
+			if ( ! $read['ok'] ) {
+				$issues[] = array(
+					'field'   => 'Smile.io',
+					'message' => $read['message'],
+				);
+				$object = null;
+			} else {
+				$object     = Open_Bounty_Smile::build_object( $read['rule'], $s['smile_noun'], get_bloginfo( 'name' ), home_url( '/' ) );
+				$provenance = Open_Bounty_Smile::provenance( $read['rule'] );
+			}
+		} elseif ( 'alliance' === $s['mode'] ) {
 			$object = Open_Bounty_Schema::fetch_json( Open_Bounty_Schema::ALLIANCE_URL );
 			if ( is_wp_error( $object ) ) {
 				$issues[] = array( 'field' => 'NCTR Alliance', 'message' => $object->get_error_message() );
@@ -123,8 +127,9 @@ final class Open_Bounty_Settings {
 
 		Open_Bounty_Store::save( $s, $object, $schema );
 		self::$result = array(
-			'ok'        => true,
-			'validated' => $validated,
+			'ok'         => true,
+			'validated'  => $validated,
+			'provenance' => $provenance,
 		);
 	}
 
@@ -150,6 +155,7 @@ final class Open_Bounty_Settings {
 			'denomination'       => $text( 'denomination' ),
 			'terms_url'          => $url( 'terms_url' ),
 			'show_block'         => ! empty( $_POST['show_block'] ),
+			'smile_noun'         => 'Customers' === $text( 'smile_noun' ) ? 'Customers' : 'Members',
 		);
 		// phpcs:enable
 		return $s;
@@ -211,7 +217,17 @@ final class Open_Bounty_Settings {
 				</table>
 
 				<table class="form-table" role="presentation" data-mode="smile">
-					<tr><td style="padding-left:0"><p class="description"><?php esc_html_e( 'Coming in the next release. Choosing it now publishes nothing.', 'open-bounty' ); ?></p></td></tr>
+					<tr>
+						<th scope="row"><label for="ob-smile-noun"><?php esc_html_e( 'Who earns?', 'open-bounty' ); ?></label></th>
+						<td>
+							<select id="ob-smile-noun" name="smile_noun">
+								<option value="Members" <?php selected( $s['smile_noun'], 'Members' ); ?>><?php esc_html_e( 'Members', 'open-bounty' ); ?></option>
+								<option value="Customers" <?php selected( $s['smile_noun'], 'Customers' ); ?>><?php esc_html_e( 'Customers', 'open-bounty' ); ?></option>
+							</select>
+							<p class="description"><?php esc_html_e( 'The rate and the points name come from your live Smile.io rule and can’t be typed. If Smile.io can’t be read, nothing is published.', 'open-bounty' ); ?></p>
+							<p class="description"><?php esc_html_e( 'Note: Smile.io runs on Shopify and BigCommerce and has no WooCommerce integration, so on most WooCommerce stores there will be no program to read.', 'open-bounty' ); ?></p>
+						</td>
+					</tr>
 				</table>
 
 				<table class="form-table" role="presentation" data-mode="own">
@@ -309,11 +325,16 @@ final class Open_Bounty_Settings {
 		}
 		if ( $r['ok'] ) {
 			echo '<div class="notice notice-success"><p><strong>' . esc_html__( 'Published.', 'open-bounty' ) . '</strong> ';
-			echo esc_html( self::validated_line( $r['validated'] ) ) . '</p></div>';
+			echo esc_html( self::validated_line( $r['validated'] ) ) . '</p>';
+			if ( ! empty( $r['provenance'] ) ) {
+				echo '<p>' . esc_html( $r['provenance'] ) . '</p>';
+			}
+			echo '</div>';
 			return;
 		}
 		echo '<div class="notice notice-error"><p><strong>' . esc_html__( 'Nothing was published.', 'open-bounty' ) . '</strong>';
-		if ( ! empty( $r['validated'] ) ) {
+		// Only say what was validated when an object actually existed to validate.
+		if ( ! empty( $r['validated'] ) && 'unknown' !== $r['validated']['object_version'] ) {
 			echo ' ' . esc_html( self::validated_line( $r['validated'] ) );
 		}
 		echo '</p><ul style="list-style:disc;margin-left:1.5em">';

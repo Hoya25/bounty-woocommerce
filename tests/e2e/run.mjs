@@ -161,6 +161,19 @@ console.log('\nA banned sentence is refused');
   ok((await wellKnown()).res.status() === 404, 'well-known still 404');
 }
 
+console.log('\nSmile.io on a WooCommerce store: refused, nothing published');
+{
+  await page.goto(SETTINGS);
+  await page.check('input[name="mode"][value="smile"]');
+  await page.click('#open_bounty_save');
+  await page.waitForLoadState('networkidle');
+  const notice = (await page.locator('.notice').first().innerText()).trim();
+  ok(/Nothing was published/.test(notice), 'refused: "Nothing was published"');
+  ok(/No Smile\.io program was found/.test(notice), 'says no Smile.io program was found, and why');
+  ok((await wellKnown()).res.status() === 404, 'well-known still 404');
+  await page.screenshot({ path: `${SHOTS}settings-smile-refused.png`, fullPage: true });
+}
+
 console.log('\nDescribe your own reward');
 {
   const notice = await save({ mode: 'own', own: OWN });

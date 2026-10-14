@@ -30,7 +30,7 @@ Before you publish, none of this exists. Your store looks exactly as it did befo
 
 You need WordPress 6.4 or later, WooCommerce 8.0 or later, and PHP 7.4 or later.
 
-1. Download **`open-bounty-1.0.0.zip`** from the
+1. Download **`open-bounty-1.1.0.zip`** from the
    [Releases page](https://github.com/Hoya25/bounty-woocommerce/releases). Don't unzip it.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, choose the zip, and click
    **Install Now**, then **Activate**.
@@ -50,6 +50,17 @@ Choose **which program funds your bounty**:
     shoppers **word for word**, so write only what every qualifying purchase actually pays today.
   - **Paid as**: points, token, cash, or other (store credit, a gift, …)
   - **Denomination** and **Terms URL** are optional.
+- **Use my Smile.io program**: if your store runs Smile.io, the plugin reads your points
+  program's earning rule from Smile.io and writes the sentence for you, for example:
+  *"Members earn 1 Point per dollar, redeemable at checkout."* You only choose whether it says
+  *Members* or *Customers*. The number and the points name come from Smile.io and can't be
+  typed. If Smile.io can't be read, or your program is switched off, pays a fixed amount per
+  order instead of per dollar, isn't in dollars, or has no rewards to spend points on, the page
+  tells you which, and nothing is published.
+
+  **Good to know:** Smile.io officially supports Shopify and BigCommerce, not WooCommerce. On
+  most WooCommerce stores this option will tell you no Smile.io program was found. That's the
+  honest answer, not an error.
 
 Then click **Validate and publish**.
 
