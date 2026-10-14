@@ -198,6 +198,18 @@ console.log('\nYotpo Loyalty on a WooCommerce store without it: refused, nothing
   await page.screenshot({ path: `${SHOTS}settings-yotpo-refused.png`, fullPage: true });
 }
 
+console.log('\nLoyaltyLion on a WooCommerce store without it: refused, nothing published');
+{
+  await page.goto(SETTINGS);
+  await page.check('input[name="mode"][value="loyaltylion"]');
+  await page.click('#open_bounty_save');
+  await page.waitForLoadState('networkidle');
+  const notice = (await page.locator('.notice').first().innerText()).trim();
+  ok(/Nothing was published/.test(notice), 'refused: "Nothing was published"');
+  ok(/No LoyaltyLion program was found/.test(notice), 'says no LoyaltyLion program was found');
+  ok((await wellKnown()).res.status() === 404, 'well-known still 404');
+}
+
 console.log('\nDescribe your own reward');
 {
   const notice = await save({ mode: 'own', own: OWN });

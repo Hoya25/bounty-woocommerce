@@ -151,6 +151,11 @@ final class Open_Bounty_Settings {
 				'label' => 'Yotpo Loyalty',
 				'note'  => __( 'Note: Yotpo says it does not currently support new WooCommerce accounts and doesn’t list WooCommerce as a supported platform. Existing or custom installs that load Yotpo’s loyalty script on your pages can still be read.', 'open-bounty' ),
 			),
+			'loyaltylion' => array(
+				'class' => 'Open_Bounty_LoyaltyLion',
+				'label' => 'LoyaltyLion',
+				'note'  => __( 'Note: LoyaltyLion lists Shopify, Adobe Commerce and custom platforms as install targets; WooCommerce isn’t one of them. A custom install that loads LoyaltyLion’s script on your pages can be read.', 'open-bounty' ),
+			),
 		);
 	}
 

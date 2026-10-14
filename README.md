@@ -30,7 +30,7 @@ Before you publish, none of this exists. Your store looks exactly as it did befo
 
 You need WordPress 6.4 or later, WooCommerce 8.0 or later, and PHP 7.4 or later.
 
-1. Download **`open-bounty-1.3.0.zip`** from the
+1. Download **`open-bounty-1.4.0.zip`** from the
    [Releases page](https://github.com/Hoya25/bounty-woocommerce/releases). Don't unzip it.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, choose the zip, and click
    **Install Now**, then **Activate**.
@@ -70,6 +70,16 @@ Choose **which program funds your bounty**:
   **Good to know:** Yotpo says it doesn't currently support new WooCommerce accounts, and its
   support pages don't list WooCommerce as a supported platform. If your store has an existing
   or custom Yotpo Loyalty install that loads Yotpo's script on your pages, this option reads it.
+
+- **Use my LoyaltyLion program**: the same for LoyaltyLion. The plugin reads your purchase rule
+  at your entry tier, your points name (singular and plural, as LoyaltyLion shows them), and
+  whether your program is switched on, and writes the sentence for you. It refuses, and says why,
+  in the same cases as the others, and also if your purchase rule only pays a limited number of
+  times.
+
+  **Good to know:** LoyaltyLion lists Shopify, Adobe Commerce and custom platforms as install
+  targets, not WooCommerce. A custom install that loads LoyaltyLion's script on your pages can be
+  read.
 
 Then click **Validate and publish**.
 

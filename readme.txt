@@ -4,7 +4,7 @@ Tags: woocommerce, rewards, loyalty, ai, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -25,7 +25,7 @@ Nothing is published until you click Validate and publish. Every description is 
 
 == Installation ==
 
-1. Plugins → Add New Plugin → Upload Plugin, choose open-bounty-1.3.0.zip, Install Now, Activate.
+1. Plugins → Add New Plugin → Upload Plugin, choose open-bounty-1.4.0.zip, Install Now, Activate.
 2. WooCommerce → Bounty.
 3. Choose NCTR Alliance (only if your store is connected to it) or Describe your own reward, then Validate and publish.
 
@@ -42,6 +42,9 @@ Only api.nctr.live: to fetch the standard it validates against (cached for 10 mi
 WooCommerce → Bounty → Stop publishing. Deactivating or deleting the plugin does the same.
 
 == Changelog ==
+
+= 1.4.0 =
+* "Use my LoyaltyLion program": composes the sentence from your live LoyaltyLion purchase rule at your entry tier. LoyaltyLion lists Shopify, Adobe Commerce and custom platforms, not WooCommerce; a custom install that loads its script can be read.
 
 = 1.3.0 =
 * "Use my Yotpo Loyalty program": composes the sentence from your live store-wide Yotpo purchase campaign. Yotpo does not currently support new WooCommerce accounts; existing or custom installs that load Yotpo's loyalty script can be read.
