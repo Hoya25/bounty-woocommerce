@@ -1,0 +1,14 @@
+{
+  "name": "open-bounty-woocommerce-dev",
+  "private": true,
+  "description": "Development tooling only. Nothing here ships in the plugin zip.",
+  "scripts": {
+    "site": "npx -y @wp-playground/cli@3.1.56 server --port=9400 --blueprint=dev-site/blueprint.json --mount=\"$PWD:/wordpress/wp-content/plugins/open-bounty\"",
+    "e2e": "node tests/e2e/run.mjs",
+    "test": "sh bin/test.sh",
+    "zip": "sh bin/build-zip.sh"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

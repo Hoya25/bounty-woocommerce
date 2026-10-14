@@ -1,0 +1,14 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/wp-admin/admin.php?page=open-bounty",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "features": { "networking": true },
+  "steps": [
+    { "step": "login", "username": "admin", "password": "password" },
+    { "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" }, "options": { "activate": true } },
+    { "step": "installTheme", "themeData": { "resource": "wordpress.org/themes", "slug": "storefront" }, "options": { "activate": true } },
+    { "step": "activatePlugin", "pluginPath": "open-bounty/open-bounty.php" },
+    { "step": "setSiteOptions", "options": { "permalink_structure": "/%postname%/", "blogname": "Example Outfitters", "woocommerce_onboarding_profile": { "skipped": true }, "woocommerce_coming_soon": "no" } },
+    { "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; flush_rewrite_rules(false); $p = new WC_Product_Simple(); $p->set_name('Trail Jacket'); $p->set_slug('trail-jacket'); $p->set_regular_price('129.00'); $p->set_description('A light shell for long days.'); $p->set_short_description('Light, packable, waterproof.'); $p->set_status('publish'); $p->save();" }
+  ]
+}
