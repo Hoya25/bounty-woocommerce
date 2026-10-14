@@ -184,6 +184,20 @@ console.log('\nSmile.io on a WooCommerce store: refused, nothing published');
   await page.screenshot({ path: `${SHOTS}settings-smile-refused.png`, fullPage: true });
 }
 
+console.log('\nYotpo Loyalty on a WooCommerce store without it: refused, nothing published');
+{
+  await page.goto(SETTINGS);
+  await page.check('input[name="mode"][value="yotpo"]');
+  await page.click('#open_bounty_save');
+  await page.waitForLoadState('networkidle');
+  const notice = (await page.locator('.notice').first().innerText()).trim();
+  ok(/Nothing was published/.test(notice), 'refused: "Nothing was published"');
+  ok(/No Yotpo Loyalty program was found/.test(notice), 'says no Yotpo program was found');
+  ok(/support new WooCommerce accounts/.test(notice), "states Yotpo's WooCommerce position");
+  ok((await wellKnown()).res.status() === 404, 'well-known still 404');
+  await page.screenshot({ path: `${SHOTS}settings-yotpo-refused.png`, fullPage: true });
+}
+
 console.log('\nDescribe your own reward');
 {
   const notice = await save({ mode: 'own', own: OWN });

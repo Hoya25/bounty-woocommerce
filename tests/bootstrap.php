@@ -35,3 +35,4 @@ require dirname( __DIR__ ) . '/includes/class-schema.php';
 require dirname( __DIR__ ) . '/includes/class-store.php';
 require dirname( __DIR__ ) . '/includes/class-render.php';
 require dirname( __DIR__ ) . '/includes/class-smile.php';
+require dirname( __DIR__ ) . '/includes/class-yotpo.php';

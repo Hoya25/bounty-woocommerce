@@ -149,10 +149,11 @@ final class Open_Bounty_Smile {
 	}
 
 	/** One line saying exactly which rule was read. */
-	public static function provenance( array $rule ) {
+	public static function provenance( array $rule, $label = 'Smile.io' ) {
 		return sprintf(
-			/* translators: 1: rule id, 2: rule name, 3: rate, 4: currency */
-			__( 'Read live from Smile.io: purchase rule %1$d (“%2$s”), %3$s per 1 %4$s.', 'open-bounty' ),
+			/* translators: 1: provider, 2: rule id, 3: rule name, 4: rate, 5: currency */
+			__( 'Read live from %1$s: purchase rule %2$d (“%3$s”), %4$s per 1 %5$s.', 'open-bounty' ),
+			$label,
 			$rule['rule_id'],
 			$rule['rule_name'],
 			$rule['rate'],

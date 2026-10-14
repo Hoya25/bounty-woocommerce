@@ -30,7 +30,7 @@ Before you publish, none of this exists. Your store looks exactly as it did befo
 
 You need WordPress 6.4 or later, WooCommerce 8.0 or later, and PHP 7.4 or later.
 
-1. Download **`open-bounty-1.2.0.zip`** from the
+1. Download **`open-bounty-1.3.0.zip`** from the
    [Releases page](https://github.com/Hoya25/bounty-woocommerce/releases). Don't unzip it.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, choose the zip, and click
    **Install Now**, then **Activate**.
@@ -61,6 +61,15 @@ Choose **which program funds your bounty**:
   **Good to know:** Smile.io officially supports Shopify and BigCommerce, not WooCommerce. On
   most WooCommerce stores this option will tell you no Smile.io program was found. That's the
   honest answer, not an error.
+- **Use my Yotpo Loyalty program**: the same idea for Yotpo Loyalty & Referrals. The plugin reads
+  your store-wide points-for-purchases campaign from the Yotpo loyalty script on your pages
+  (product-specific bonus campaigns are ignored), and writes the sentence for you. It refuses,
+  and says why, in the same cases as Smile.io, and also if your VIP tiers multiply every
+  member's rate or your points have no single name.
+
+  **Good to know:** Yotpo says it doesn't currently support new WooCommerce accounts, and its
+  support pages don't list WooCommerce as a supported platform. If your store has an existing
+  or custom Yotpo Loyalty install that loads Yotpo's script on your pages, this option reads it.
 
 Then click **Validate and publish**.
 

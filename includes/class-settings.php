@@ -77,18 +77,20 @@ final class Open_Bounty_Settings {
 
 		$issues = array();
 		$provenance = null;
-		if ( 'smile' === $s['mode'] ) {
+		$providers = self::providers();
+		if ( isset( $providers[ $s['mode'] ] ) ) {
 			// Read live at save. The sentence comes from the rule, never the form.
-			$read = Open_Bounty_Smile::read( home_url( '/' ) );
+			$p    = $providers[ $s['mode'] ];
+			$read = call_user_func( array( $p['class'], 'read' ), home_url( '/' ) );
 			if ( ! $read['ok'] ) {
 				$issues[] = array(
-					'field'   => 'Smile.io',
+					'field'   => $p['label'],
 					'message' => $read['message'],
 				);
 				$object = null;
 			} else {
-				$object     = Open_Bounty_Smile::build_object( $read['rule'], $s['smile_noun'], get_bloginfo( 'name' ), home_url( '/' ) );
-				$provenance = Open_Bounty_Smile::provenance( $read['rule'] );
+				$object     = Open_Bounty_Smile::build_object( $read['rule'], $s['loyalty_noun'], get_bloginfo( 'name' ), home_url( '/' ) );
+				$provenance = Open_Bounty_Smile::provenance( $read['rule'], $p['label'] );
 			}
 		} elseif ( 'alliance' === $s['mode'] ) {
 			$object = Open_Bounty_Schema::fetch_json( Open_Bounty_Schema::ALLIANCE_URL );
@@ -133,6 +135,25 @@ final class Open_Bounty_Settings {
 		);
 	}
 
+	/**
+	 * Loyalty programs whose live earning rule can be read and composed into
+	 * the sentence. Each note says plainly how the provider stands on WooCommerce.
+	 */
+	private static function providers() {
+		return array(
+			'smile' => array(
+				'class' => 'Open_Bounty_Smile',
+				'label' => 'Smile.io',
+				'note'  => __( 'Note: Smile.io runs on Shopify and BigCommerce and has no WooCommerce integration, so on most WooCommerce stores there will be no program to read.', 'open-bounty' ),
+			),
+			'yotpo' => array(
+				'class' => 'Open_Bounty_Yotpo',
+				'label' => 'Yotpo Loyalty',
+				'note'  => __( 'Note: Yotpo says it does not currently support new WooCommerce accounts and doesn’t list WooCommerce as a supported platform. Existing or custom installs that load Yotpo’s loyalty script on your pages can still be read.', 'open-bounty' ),
+			),
+		);
+	}
+
 	private static function read_form() {
 		// phpcs:disable WordPress.Security.NonceVerification -- verified in handle().
 		$text = function ( $key ) {
@@ -144,7 +165,7 @@ final class Open_Bounty_Settings {
 		$type = $text( 'earn_type' );
 
 		$s = array(
-			'mode'               => in_array( $text( 'mode' ), array( 'own', 'smile' ), true ) ? $text( 'mode' ) : 'alliance',
+			'mode'               => in_array( $text( 'mode' ), array_merge( array( 'own' ), array_keys( self::providers() ) ), true ) ? $text( 'mode' ) : 'alliance',
 			'alliance_confirmed' => ! empty( $_POST['alliance_confirmed'] ),
 			'program_name'       => $text( 'program_name' ),
 			'program_url'        => $url( 'program_url' ),
@@ -155,7 +176,7 @@ final class Open_Bounty_Settings {
 			'denomination'       => $text( 'denomination' ),
 			'terms_url'          => $url( 'terms_url' ),
 			'show_block'         => ! empty( $_POST['show_block'] ),
-			'smile_noun'         => 'Customers' === $text( 'smile_noun' ) ? 'Customers' : 'Members',
+			'loyalty_noun'       => 'Customers' === $text( 'noun_' . $text( 'mode' ) ) ? 'Customers' : 'Members',
 		);
 		// phpcs:enable
 		return $s;
@@ -170,7 +191,8 @@ final class Open_Bounty_Settings {
 		$published = Open_Bounty_Store::published();
 		$current   = Open_Bounty_Store::current();
 		$own       = 'own' === $s['mode'];
-		$smile     = 'smile' === $s['mode'];
+		$providers = self::providers();
+		$loyalty   = isset( $providers[ $s['mode'] ] );
 		?>
 		<div class="wrap open-bounty-admin">
 			<h1><?php esc_html_e( 'Bounty', 'open-bounty' ); ?></h1>
@@ -187,7 +209,7 @@ final class Open_Bounty_Settings {
 				<h2><?php esc_html_e( 'Which program funds your bounty?', 'open-bounty' ); ?></h2>
 				<fieldset class="open-bounty-choice">
 					<label style="display:block;margin:0 0 .6em">
-						<input type="radio" name="mode" value="alliance" <?php checked( ! $own && ! $smile ); ?> />
+						<input type="radio" name="mode" value="alliance" <?php checked( ! $own && ! $loyalty ); ?> />
 						<strong><?php esc_html_e( 'NCTR Alliance', 'open-bounty' ); ?></strong>
 						— <?php esc_html_e( 'fetched live from the alliance, so its sentence stays current without you editing anything.', 'open-bounty' ); ?>
 					</label>
@@ -196,11 +218,13 @@ final class Open_Bounty_Settings {
 						<strong><?php esc_html_e( 'Describe your own reward', 'open-bounty' ); ?></strong>
 						— <?php esc_html_e( 'any rewards program: points, store credit, a gift, a cash reward.', 'open-bounty' ); ?>
 					</label>
-					<label style="display:block;margin-top:.6em">
-						<input type="radio" name="mode" value="smile" <?php checked( $smile ); ?> />
-						<strong><?php esc_html_e( 'Use my Smile.io program', 'open-bounty' ); ?></strong>
-						— <?php esc_html_e( 'reads your points program\'s earning rule directly from Smile.io.', 'open-bounty' ); ?>
-					</label>
+					<?php foreach ( $providers as $key => $p ) : ?>
+						<label style="display:block;margin-top:.6em">
+							<input type="radio" name="mode" value="<?php echo esc_attr( $key ); ?>" <?php checked( $s['mode'], $key ); ?> />
+							<strong><?php echo esc_html( sprintf( /* translators: %s: provider */ __( 'Use my %s program', 'open-bounty' ), $p['label'] ) ); ?></strong>
+							— <?php echo esc_html( sprintf( /* translators: %s: provider */ __( 'reads your points program\'s earning rule directly from %s.', 'open-bounty' ), $p['label'] ) ); ?>
+						</label>
+					<?php endforeach; ?>
 				</fieldset>
 
 				<table class="form-table" role="presentation" data-mode="alliance">
@@ -216,19 +240,21 @@ final class Open_Bounty_Settings {
 					</tr>
 				</table>
 
-				<table class="form-table" role="presentation" data-mode="smile">
+				<?php foreach ( $providers as $key => $p ) : ?>
+				<table class="form-table" role="presentation" data-mode="<?php echo esc_attr( $key ); ?>">
 					<tr>
-						<th scope="row"><label for="ob-smile-noun"><?php esc_html_e( 'Who earns?', 'open-bounty' ); ?></label></th>
+						<th scope="row"><label for="ob-noun-<?php echo esc_attr( $key ); ?>"><?php esc_html_e( 'Who earns?', 'open-bounty' ); ?></label></th>
 						<td>
-							<select id="ob-smile-noun" name="smile_noun">
-								<option value="Members" <?php selected( $s['smile_noun'], 'Members' ); ?>><?php esc_html_e( 'Members', 'open-bounty' ); ?></option>
-								<option value="Customers" <?php selected( $s['smile_noun'], 'Customers' ); ?>><?php esc_html_e( 'Customers', 'open-bounty' ); ?></option>
+							<select id="ob-noun-<?php echo esc_attr( $key ); ?>" name="noun_<?php echo esc_attr( $key ); ?>">
+								<option value="Members" <?php selected( $s['loyalty_noun'], 'Members' ); ?>><?php esc_html_e( 'Members', 'open-bounty' ); ?></option>
+								<option value="Customers" <?php selected( $s['loyalty_noun'], 'Customers' ); ?>><?php esc_html_e( 'Customers', 'open-bounty' ); ?></option>
 							</select>
-							<p class="description"><?php esc_html_e( 'The rate and the points name come from your live Smile.io rule and can’t be typed. If Smile.io can’t be read, nothing is published.', 'open-bounty' ); ?></p>
-							<p class="description"><?php esc_html_e( 'Note: Smile.io runs on Shopify and BigCommerce and has no WooCommerce integration, so on most WooCommerce stores there will be no program to read.', 'open-bounty' ); ?></p>
+							<p class="description"><?php echo esc_html( sprintf( /* translators: %s: provider */ __( 'The rate and the points name come from your live %1$s rule and can’t be typed. If %1$s can’t be read, nothing is published.', 'open-bounty' ), $p['label'] ) ); ?></p>
+							<p class="description"><?php echo esc_html( $p['note'] ); ?></p>
 						</td>
 					</tr>
 				</table>
+				<?php endforeach; ?>
 
 				<table class="form-table" role="presentation" data-mode="own">
 					<tr>

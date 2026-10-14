@@ -39,7 +39,7 @@ final class Open_Bounty_Store {
 			'denomination'       => '',
 			'terms_url'          => '',
 			'show_block'         => true,
-			'smile_noun'         => 'Members',
+			'loyalty_noun'       => 'Members',
 		);
 		$saved = get_option( self::SETTINGS, array() );
 		return array_merge( $defaults, is_array( $saved ) ? $saved : array() );
