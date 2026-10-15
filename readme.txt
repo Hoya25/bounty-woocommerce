@@ -4,7 +4,7 @@ Tags: woocommerce, rewards, loyalty, ai, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -42,6 +42,9 @@ Only api.nctr.live: to fetch the standard it validates against (cached for 10 mi
 WooCommerce → Bounty → Stop publishing. Deactivating or deleting the plugin does the same.
 
 == Changelog ==
+
+= 1.6.0 =
+* "Use my Klaviyo welcome offer": states the coupon your live Klaviyo signup forms hand out (a coupon block) as a bounty for new subscribers, worded from that coupon's settings in WooCommerce. The form's own wording is never read; if the coupon can't be read, nothing is published.
 
 = 1.5.0 =
 * Open Bounty Schema v0.5: the Smile.io, Yotpo Loyalty and LoyaltyLion options also publish a "rewards" block read from the same live program: what your points are worth (from a redemption rule with a stated value), your tiers, and your entry tier's perks. If any part can't be read truthfully, your bounty publishes without it and the settings page says why.

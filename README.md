@@ -81,6 +81,15 @@ Choose **which program funds your bounty**:
   targets, not WooCommerce. A custom install that loads LoyaltyLion's script on your pages can be
   read.
 
+- **Use my Klaviyo welcome offer** (version 1.6.0): states the coupon your live Klaviyo signup
+  forms hand out as a bounty for new subscribers, for example "New email subscribers get 15% off
+  one order, on orders of $50 or more." Which coupon comes from a coupon block in your live
+  Klaviyo forms: a fixed code, or a WooCommerce coupon Klaviyo issues single codes from. What it
+  gives comes from that coupon's own settings in WooCommerce. The wording in your form is never
+  read. It refuses, and says why, if your forms have no coupon block, hand out more than one
+  coupon, or name a coupon this store doesn't have, and if the coupon is expired, used up, or
+  limited to some products or email addresses.
+
 - **What your points are worth, your tiers and your perks** (version 1.5.0): the three loyalty
   options also publish a `rewards` block from the same live program. It says what points are
   worth, taken from a reward with a stated value such as "250 Points = $5 off at checkout". It

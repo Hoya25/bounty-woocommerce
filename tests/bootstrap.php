@@ -38,3 +38,4 @@ require dirname( __DIR__ ) . '/includes/class-rewards.php';
 require dirname( __DIR__ ) . '/includes/class-smile.php';
 require dirname( __DIR__ ) . '/includes/class-yotpo.php';
 require dirname( __DIR__ ) . '/includes/class-loyaltylion.php';
+require dirname( __DIR__ ) . '/includes/class-klaviyo.php';

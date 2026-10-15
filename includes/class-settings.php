@@ -88,6 +88,10 @@ final class Open_Bounty_Settings {
 					'message' => $read['message'],
 				);
 				$object = null;
+			} elseif ( ! empty( $p['offer'] ) ) {
+				// An offer (a discount a shopper gets): the provider's class composes it.
+				$object     = call_user_func( array( $p['class'], 'build_object' ), $read, get_bloginfo( 'name' ), home_url( '/' ) );
+				$provenance = call_user_func( array( $p['class'], 'provenance' ), $read );
 			} else {
 				$object     = Open_Bounty_Smile::build_object( $read['rule'], $s['loyalty_noun'], get_bloginfo( 'name' ), home_url( '/' ) );
 				$provenance = Open_Bounty_Smile::provenance( $read['rule'], $p['label'] );
@@ -139,7 +143,9 @@ final class Open_Bounty_Settings {
 
 	/**
 	 * Loyalty programs whose live earning rule can be read and composed into
-	 * the sentence. Each note says plainly how the provider stands on WooCommerce.
+	 * the sentence, and offers ('offer' => true: a discount a shopper gets)
+	 * whose live coupon can. Each note says plainly how the provider stands on
+	 * WooCommerce.
 	 */
 	private static function providers() {
 		return array(
@@ -157,6 +163,14 @@ final class Open_Bounty_Settings {
 				'class' => 'Open_Bounty_LoyaltyLion',
 				'label' => 'LoyaltyLion',
 				'note'  => __( 'Note: LoyaltyLion lists Shopify, Adobe Commerce and custom platforms as install targets; WooCommerce isn’t one of them. A custom install that loads LoyaltyLion’s script on your pages can be read.', 'open-bounty' ),
+			),
+			'klaviyo' => array(
+				'class'  => 'Open_Bounty_Klaviyo',
+				'label'  => 'Klaviyo',
+				'offer'  => true,
+				'choice' => __( 'Use my Klaviyo welcome offer', 'open-bounty' ),
+				'desc'   => __( 'states the coupon your live Klaviyo signup forms hand out, from that coupon\'s settings in WooCommerce.', 'open-bounty' ),
+				'note'   => __( 'Which coupon comes from a coupon block in your live Klaviyo signup forms; what it gives comes from that WooCommerce coupon. The words in your form aren’t read. If either part can’t be read, nothing is published.', 'open-bounty' ),
 			),
 		);
 	}
@@ -228,8 +242,12 @@ final class Open_Bounty_Settings {
 					<?php foreach ( $providers as $key => $p ) : ?>
 						<label style="display:block;margin-top:.6em">
 							<input type="radio" name="mode" value="<?php echo esc_attr( $key ); ?>" <?php checked( $s['mode'], $key ); ?> />
+							<?php if ( ! empty( $p['offer'] ) ) : ?>
+							<strong><?php echo esc_html( $p['choice'] ); ?></strong> — <?php echo esc_html( $p['desc'] ); ?>
+							<?php else : ?>
 							<strong><?php echo esc_html( sprintf( /* translators: %s: provider */ __( 'Use my %s program', 'open-bounty' ), $p['label'] ) ); ?></strong>
 							— <?php echo esc_html( sprintf( /* translators: %s: provider */ __( 'reads your points program\'s earning rule directly from %s.', 'open-bounty' ), $p['label'] ) ); ?>
+							<?php endif; ?>
 						</label>
 					<?php endforeach; ?>
 					<?php // Okendo Loyalty is a Shopify app with no WooCommerce version: there is no program to read, so it is a note, not a choice. ?>
@@ -253,6 +271,12 @@ final class Open_Bounty_Settings {
 
 				<?php foreach ( $providers as $key => $p ) : ?>
 				<table class="form-table" role="presentation" data-mode="<?php echo esc_attr( $key ); ?>">
+					<?php if ( ! empty( $p['offer'] ) ) : ?>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'How it’s read', 'open-bounty' ); ?></th>
+						<td><p class="description"><?php echo esc_html( $p['note'] ); ?></p></td>
+					</tr>
+					<?php else : ?>
 					<tr>
 						<th scope="row"><label for="ob-noun-<?php echo esc_attr( $key ); ?>"><?php esc_html_e( 'Who earns?', 'open-bounty' ); ?></label></th>
 						<td>
@@ -264,6 +288,7 @@ final class Open_Bounty_Settings {
 							<p class="description"><?php echo esc_html( $p['note'] ); ?></p>
 						</td>
 					</tr>
+					<?php endif; ?>
 				</table>
 				<?php endforeach; ?>
 

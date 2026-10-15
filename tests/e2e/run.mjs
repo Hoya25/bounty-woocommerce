@@ -210,6 +210,51 @@ console.log('\nLoyaltyLion on a WooCommerce store without it: refused, nothing p
   ok((await wellKnown()).res.status() === 404, 'well-known still 404');
 }
 
+// Klaviyo welcome offer, live: the dev site's head carries a real store's Klaviyo
+// company id (dev-site mu-plugin), so the plugin reads that store's LIVE signup
+// forms; the coupon it names is this site's own WooCommerce coupon (blueprint).
+async function klaviyo(companyId) {
+  await page.goto(`${BASE}/?ob_test_klaviyo=${companyId}`);
+  await page.goto(SETTINGS);
+  await page.check('input[name="mode"][value="klaviyo"]');
+  await page.click('#open_bounty_save');
+  await page.waitForLoadState('networkidle');
+  return (await page.locator('.notice').first().innerText()).trim();
+}
+
+console.log('\nKlaviyo welcome offer: lunya.co\'s live forms, static code WELCOME-K51FJ → this store\'s 15% coupon');
+{
+  const notice = await klaviyo('XcEkhv');
+  ok(/Published/.test(notice), `published (${notice.split('\n')[0]})`);
+  ok(/WELCOME-K51FJ/.test(notice), 'provenance names the code from the live form');
+  const { body } = await wellKnown();
+  ok(body?.earn?.display === 'New email or text subscribers get 15% off one order.', `sentence: ${body?.earn?.display}`);
+  ok(body?.earn?.type === 'other' && !body?.earn?.denomination, 'earn.type other, no denomination');
+  ok(!BANNED.test(JSON.stringify(body)), 'no banned vocabulary');
+  await page.screenshot({ path: `${SHOTS}settings-klaviyo-published.png`, fullPage: true });
+}
+
+console.log('\nKlaviyo welcome offer: pangaia.com\'s live forms, static code JUSTFORYOU → $10 off, $50 minimum');
+{
+  const notice = await klaviyo('WBw2qg');
+  ok(/Published/.test(notice), 'published');
+  const { body } = await wellKnown();
+  ok(body?.earn?.display === 'New email subscribers get $10 off, on orders of $50 or more.', `sentence: ${body?.earn?.display}`);
+}
+
+console.log('\nKlaviyo welcome offer: ritual.com\'s live forms (a Shopify coupon): refused');
+{
+  const notice = await klaviyo('VazkSm');
+  ok(/Nothing was published/.test(notice), 'refused: "Nothing was published"');
+  ok(/WooCommerce coupon block/.test(notice), 'says there is no WooCommerce coupon block');
+}
+
+console.log('\nKlaviyo welcome offer without Klaviyo on the store: refused');
+{
+  const notice = await klaviyo('none');
+  ok(/Klaviyo isn't on your store's pages/.test(notice), 'says Klaviyo is not on the store');
+}
+
 console.log('\nDescribe your own reward');
 {
   const notice = await save({ mode: 'own', own: OWN });
