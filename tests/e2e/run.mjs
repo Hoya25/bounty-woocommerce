@@ -306,7 +306,11 @@ console.log('\nNCTR Alliance, confirmed');
   const notice = await save({ mode: 'alliance', confirm: true });
   ok(/Published\./.test(notice), 'published');
   const { body } = await wellKnown();
-  ok(JSON.stringify(body) === JSON.stringify(alliance), 'serves the live alliance object unchanged');
+  // Spec §7.4: the store's copy of a token program's object leaves `rewards` to
+  // the Token Profile. Everything else is the live alliance object, unchanged.
+  const { rewards: _derived, ...expected } = alliance;
+  ok(JSON.stringify(body) === JSON.stringify(expected), 'serves the live alliance object, minus rewards (spec §7.4)');
+  ok(!('rewards' in body) && Array.isArray(body.tokens), 'store copy keeps tokens, leaves rewards to the Token Profile');
   const html = await (await http.get(PRODUCT)).text();
   const prop = offerProperty(html);
   ok(prop?.value === alliance.earn.display && prop?.url === alliance.api, 'JSON-LD carries the alliance sentence and api');
