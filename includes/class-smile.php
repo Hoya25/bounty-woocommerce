@@ -51,7 +51,7 @@ final class Open_Bounty_Smile {
 	 *
 	 * @param array $r earningRules, activityRules, programData, init — decoded JSON.
 	 */
-	public static function select_rule( array $r ) {
+	private static function select_rule_base( array $r ) {
 		if ( true !== self::dig( $r, array( 'init', 'points_program', 'is_enabled' ) ) ) {
 			return self::fail( 'program', __( 'Your Smile.io points program is turned off, so purchases don\'t earn points right now.', 'open-bounty' ) );
 		}
@@ -121,6 +121,15 @@ final class Open_Bounty_Smile {
 		);
 	}
 
+	/** The rule, with the v0.5 `rewards` block composed from the same read (a refusal leaves it off the object). */
+	public static function select_rule( array $r ) {
+		$read = self::select_rule_base( $r );
+		if ( $read['ok'] ) {
+			$read['rule']['rewards'] = Open_Bounty_Rewards::smile( $r, $read['rule'] );
+		}
+		return $read;
+	}
+
 	/** Fixed words plus the live number and the program's own label. */
 	public static function compose( array $rule, $noun ) {
 		$noun  = in_array( $noun, self::NOUNS, true ) ? $noun : 'Members';
@@ -133,7 +142,7 @@ final class Open_Bounty_Smile {
 	/** The object for this store, or a refusal. */
 	public static function build_object( array $rule, $noun, $store_name, $store_url ) {
 		return array(
-			'bounty_schema_version' => Open_Bounty_Schema::OBJECT_VERSION,
+			'bounty_schema_version' => Open_Bounty_Schema::LOYALTY_OBJECT_VERSION,
 			'active'                => true,
 			'program'               => array(
 				'name' => $store_name,
@@ -145,7 +154,7 @@ final class Open_Bounty_Smile {
 				'type'         => 'points',
 			),
 			'updated_at'            => gmdate( 'Y-m-d' ),
-		);
+		) + ( ! empty( $rule['rewards']['ok'] ) ? array( 'rewards' => $rule['rewards']['block'] ) : array() );
 	}
 
 	/** One line saying exactly which rule was read. */
@@ -158,7 +167,8 @@ final class Open_Bounty_Smile {
 			$rule['rule_name'],
 			$rule['rate'],
 			$rule['currency']
-		) . ( $rule['entry_tier'] ? ' ' . __( 'This is the entry VIP tier\'s rate; higher tiers earn more.', 'open-bounty' ) : '' );
+		) . ( $rule['entry_tier'] ? ' ' . __( 'This is the entry VIP tier\'s rate; higher tiers earn more.', 'open-bounty' ) : '' )
+			. ( isset( $rule['rewards'] ) ? ' ' . ( $rule['rewards']['ok'] ? __( 'Rewards block read from the same program.', 'open-bounty' ) : sprintf( /* translators: %s: reason */ __( 'No rewards block: %s', 'open-bounty' ), $rule['rewards']['reason'] ) ) : '' );
 	}
 
 	/** Runs the chain against this store's own home page. */
@@ -190,6 +200,9 @@ final class Open_Bounty_Smile {
 				return self::fail( 'smile', __( 'Smile.io couldn\'t be reached to read your program.', 'open-bounty' ) );
 			}
 		}
+		// Only `rewards` needs these two; if they fail, the sentence still publishes without it.
+		$data['uiPointsProducts'] = self::get( 'https://platform.smile.io/smile_ui/points_products?publishable_key=' . rawurlencode( $pub ), $ui );
+		$data['vipTiers']         = ! empty( $data['init']['milestone_vip_program']['is_enabled'] ) ? self::get( 'https://api.smile.io/smile_js/vip_tiers', $h ) : null;
 		return self::select_rule( $data );
 	}
 

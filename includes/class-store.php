@@ -81,6 +81,18 @@ final class Open_Bounty_Store {
 		if ( is_wp_error( $schema ) || is_wp_error( $doc ) || Open_Bounty_Schema::check( $doc, $schema ) ) {
 			return $last_good;
 		}
+		return self::store_copy( $doc );
+	}
+
+	/**
+	 * The alliance's object as this store serves it. Spec §7.4: a store-hosted
+	 * copy of a token program's object leaves `rewards` out (agents derive it
+	 * from the Token Profile), because a store copy is the one that goes stale.
+	 */
+	public static function store_copy( array $doc ) {
+		if ( ! empty( $doc['tokens'] ) ) {
+			unset( $doc['rewards'] );
+		}
 		return $doc;
 	}
 

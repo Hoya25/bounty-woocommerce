@@ -4,7 +4,7 @@ Tags: woocommerce, rewards, loyalty, ai, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -25,7 +25,7 @@ Nothing is published until you click Validate and publish. Every description is 
 
 == Installation ==
 
-1. Plugins → Add New Plugin → Upload Plugin, choose open-bounty-1.4.1.zip, Install Now, Activate.
+1. Plugins → Add New Plugin → Upload Plugin, choose open-bounty-1.5.0.zip, Install Now, Activate.
 2. WooCommerce → Bounty.
 3. Choose NCTR Alliance (only if your store is connected to it) or Describe your own reward, then Validate and publish.
 
@@ -42,6 +42,11 @@ Only api.nctr.live: to fetch the standard it validates against (cached for 10 mi
 WooCommerce → Bounty → Stop publishing. Deactivating or deleting the plugin does the same.
 
 == Changelog ==
+
+= 1.5.0 =
+* Open Bounty Schema v0.5: the Smile.io, Yotpo Loyalty and LoyaltyLion options also publish a "rewards" block read from the same live program: what your points are worth (from a redemption rule with a stated value), your tiers, and your entry tier's perks. If any part can't be read truthfully, your bounty publishes without it and the settings page says why.
+* The NCTR Alliance option leaves "rewards" out of your store's copy; agents read it from the alliance's token profile.
+* The validator now checks inside lists of objects and checks numbers.
 
 = 1.4.1 =
 * Settings note: Okendo Loyalty runs only on Shopify and has no WooCommerce version, so there is no Okendo option to choose.

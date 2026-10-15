@@ -116,7 +116,7 @@ final class Open_Bounty_LoyaltyLion {
 	}
 
 	/** Pure: the purchase rule at the entry tier, and everything the sentence needs. */
-	public static function select_rule( array $start, array $cfg, $label ) {
+	private static function select_rule_base( array $start, array $cfg, $label ) {
 		if ( empty( $start['live'] ) ) {
 			return self::fail( 'program', __( 'Your LoyaltyLion program is switched off, so purchases don\'t earn points right now.', 'open-bounty' ) );
 		}
@@ -213,6 +213,15 @@ final class Open_Bounty_LoyaltyLion {
 				'redeem'      => $redeem,
 			),
 		);
+	}
+
+	/** The rule, with the v0.5 `rewards` block composed from the same read (a refusal leaves it off the object). */
+	public static function select_rule( array $start, array $cfg, $label ) {
+		$read = self::select_rule_base( $start, $cfg, $label );
+		if ( $read['ok'] ) {
+			$read['rule']['rewards'] = Open_Bounty_Rewards::loyaltylion( $cfg, $read['rule'] );
+		}
+		return $read;
 	}
 
 	/** Runs the chain against this store's own home page. */

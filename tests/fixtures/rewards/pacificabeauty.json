@@ -1,0 +1,2053 @@
+{
+ "provider": "loyaltylion",
+ "captured": "2026-10-15",
+ "input": {
+  "start": {
+   "live": true,
+   "digest": "34eac9db36f6af6bddc64f8c0e3fda8b",
+   "uiMode": "integrated_page_only"
+  },
+  "cfg": {
+   "config": {
+    "sdkHost": "sdk.loyaltylion.net",
+    "sdkStaticHost": "sdk-static.loyaltylion.net",
+    "platformHost": "platform.loyaltylion.com",
+    "apiHost": "api.loyaltylion.com",
+    "appHost": "app.loyaltylion.com",
+    "bigCommerceClientId": "rb9cjzk9jybx0lnlz2mbelz9nqzsxjp",
+    "translationsDigest": "34eac9db36f6af6bddc64f8c0e3fda8b",
+    "api": {
+     "build": 54480,
+     "revision": "85b9453290"
+    },
+    "flags": {},
+    "loyaltylionFacebookAppId": "322956231078839",
+    "sdkVersion": "2023-11",
+    "env": "production",
+    "iconBaseUrl": "https://resources.loyaltylion.com/editor-tmp/icons"
+   },
+   "site": {
+    "id": 7735,
+    "currency": {
+     "code": "usd",
+     "decimalSeparator": ".",
+     "format": "%s%v",
+     "name": "United States Dollar",
+     "symbol": "$"
+    },
+    "token": "8689b0583c803cd6623b75d02f824b7b",
+    "name": "Pacifica",
+    "domain": "www.pacificabeauty.com",
+    "settings": {
+     "loyaltyPanel": {
+      "defaultPage": null,
+      "contrastColor": "#ff647c",
+      "mainColor": "#4e3929",
+      "customCSSDigest": null
+     },
+     "loyaltyWidget": {
+      "backgroundColors": {
+       "standard": "rgba(218, 24, 131, 1)",
+       "dark": "hsla(327, 80%, 35%, 1)"
+      },
+      "enabled": false,
+      "fontColor": "rgb(255,255,255)",
+      "pagePosition": "left"
+     },
+     "integratedLoyaltyPage": {
+      "createdByMerchant": false,
+      "sections": [
+       {
+        "kind": "header",
+        "options": {
+         "showMenu": true,
+         "showIntroText": false,
+         "showPendingPoints": true,
+         "background": ""
+        }
+       },
+       {
+        "kind": "tierProgress",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "campaigns",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "availableRewards",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true,
+         "showUsed": 0
+        }
+       },
+       {
+        "kind": "earn",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "redeem",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "tiersOverview",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "accountHistory",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "faq",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       }
+      ],
+      "createdAt": "2026-10-15T18:40:34.147Z",
+      "updatedAt": "2026-10-15T18:40:34.147Z",
+      "remoteConfig": {
+       "platform": "shopify",
+       "handle": "rewards",
+       "shopifyPageId": "",
+       "title": "",
+       "useAppBlocks": false
+      }
+     },
+     "integratedComponentSettings": {
+      "buttonsEnabled": true,
+      "iconsEnabled": true,
+      "colorAssignments": {
+       "buttons": {
+        "background": "primary",
+        "text": "white"
+       },
+       "headers": {
+        "background": "white",
+        "text": "primary"
+       },
+       "icons": {
+        "main": "secondary"
+       },
+       "tiles": {
+        "background": "white",
+        "text": "black"
+       }
+      }
+     },
+     "integratedLoyaltyPageState": "only",
+     "sdkTheme": "default",
+     "turnkeyCustomisation": null,
+     "referrals": {
+      "tweetContent": "Discover 100% Vegan and Cruelty-Free Beauty Products. I love these products!",
+      "emailContent": "Hey,\n\nI love Pacifica Beauty products and I'm sure you will too. 100% vegan and cruelty-free formulas made with intentional ingredients for real results. I thought you might be interested in taking a look. Here's $10 off your first order, when you spend over $45.\n          \n          ",
+      "guestReferralsEnabled": false
+     },
+     "helpContent": "",
+     "notifications": {
+      "position": "topRight",
+      "desktopPosition": "topRight",
+      "mobilePosition": "top",
+      "showGuestIntroductionPrompt": false,
+      "showPointsNotification": false,
+      "showReferralPrompt": false
+     },
+     "locale": {
+      "primary": "en",
+      "date": "en",
+      "number": "en",
+      "languages": [
+       {
+        "iso_code": "en",
+        "name": "English"
+       }
+      ]
+     },
+     "urls": {
+      "login": "https://account.pacificabeauty.com",
+      "signup": "https://account.pacificabeauty.com"
+     },
+     "currencyConversionEnabled": false,
+     "currencyDisplayMode": null,
+     "currencySymbolPosition": null,
+     "useLegacySdkStandaloneRuleStyle": false,
+     "showStandaloneCheckoutRedemptionReward": false,
+     "showStandaloneSignupRule": false,
+     "useAppTurnkey": false,
+     "useBuyWithPointsScript": false,
+     "useSnakeCaseClaimedRewardsHooksResources": false,
+     "recharge": {
+      "customPortalUrl": null
+     },
+     "redemptionNotification": {
+      "enabled": true,
+      "message": "You have {{ points }} points to spend on rewards",
+      "maxRewardsToShow": 3
+     },
+     "customerTrackingConsentMode": "always"
+    },
+    "siteThemeContent": null,
+    "themeConfiguration": {
+     "brand": {
+      "colors.brand.primary": {
+       "red": 78,
+       "green": 57,
+       "blue": 41,
+       "alpha": 1
+      },
+      "colors.brand.secondary": {
+       "red": 255,
+       "green": 100,
+       "blue": 124,
+       "alpha": 1
+      },
+      "colors.call_to_action_buttons.background_color": {
+       "key_color": "primary"
+      },
+      "colors.call_to_action_buttons.text_color": {
+       "red": 255,
+       "green": 255,
+       "blue": 255,
+       "alpha": 1
+      },
+      "custom_css.global.css": ""
+     },
+     "loyalty_page_earn_points": {
+      "icons.icon_design.icon_color": {
+       "key_color": "secondary"
+      }
+     },
+     "loyalty_page_rewards": {
+      "icons.icon_design.icon_color": {
+       "key_color": "secondary"
+      }
+     },
+     "loyalty_page": {},
+     "loyalty_page_campaigns": {},
+     "loyalty_page_challenges": {},
+     "loyalty_page_loyalty_pass": {},
+     "loyalty_page_subscription_renewal": {},
+     "loyalty_page_faq": {},
+     "loyalty_page_header": {},
+     "loyalty_page_history": {},
+     "loyalty_page_tier_progress": {},
+     "loyalty_page_tiers": {},
+     "loyalty_page_your_rewards": {},
+     "birthday_bundle": {},
+     "points_multiplier": {}
+    },
+    "platform": "shopify",
+    "role": "ecommerce",
+    "meta": {
+     "loyaltyPanelCustomisationDigest": "149df448cc49a23501afb8b82f3db99d",
+     "legacyUiMigration": {
+      "actionsCompleted": [],
+      "deadlineDate": null,
+      "lastPromptedAt": null,
+      "migrationState": "not_started",
+      "migrationTarget": "turnkey",
+      "selectedForMigration": false
+     },
+     "preThemeEditorOverrides": {}
+    },
+    "notifications": [
+     {
+      "id": 311529,
+      "kind": "reward_redemption",
+      "enabled": true,
+      "settings": {
+       "delay": 5,
+       "message": "You have {{ points }} points to spend on rewards",
+       "maxRewardsToShow": 3,
+       "messageText": {
+        "en": "You have {{ points }} points to spend on rewards"
+       }
+      }
+     }
+    ],
+    "uiMode": "integrated_page_only",
+    "subscriptionBuyWithPointsEnabled": false,
+    "translationOverrides": {
+     "sdk.guest_introduction": "Did you know you can earn points for signing up, making purchases and more?<br><br> <a href=\"https://www.pacificabeauty.com/pages/pacifica-beauty-rewards-program\">LEARN MORE</a>",
+     "sdk.integrated_page.welcome_guest.log_in": "LOG IN",
+     "ui.dashboard.redeem_points.get_reward": "GET REWARD",
+     "ui.dashboard.redeem_points.rewards_page_info": "You'll be able to access this code again in the 'Claimed Rewards' section of your Rewards admin.",
+     "ui.dashboard.redeem_points.voucher_info": "This is your discount code. Use it during checkout.",
+     "ui.dashboard.redeem_points.voucher_success_message": "Use this discount code at checkout.",
+     "ui.dashboard.redeem_points.voucher_success_message_alien_store": "Your new discount code for use at <strong>%{store_name}</strong> is below.",
+     "ui.guest_sign_up_notification.sign_up": "SIGN UP",
+     "ui.referral_popup.intro_with_offer": "Give a friend %{discount} off their first purchase and earn %{points} when they spend over %{amount}",
+     "ui.referral_popup.learn_more": "LEARN MORE"
+    }
+   },
+   "program": {
+    "id": 7597,
+    "name": "Pacifica Beauty Rewards",
+    "settings": {
+     "dropAnalyticTracking": false,
+     "dropGuestPageviews": true,
+     "instantPointsEnabled": false,
+     "loyaltyTiersEnabled": true,
+     "loyaltyTiersMode": "spend",
+     "loyaltyTiersDurationMonths": null,
+     "pointExpiryEnabled": false,
+     "pointExpiryResetEvent": "point_change",
+     "pointExpiryMonths": 12,
+     "pointExpiryMode": "account_inactivity",
+     "merchantFacebookAppId": "4192948114051508",
+     "referrals": {
+      "incentive": null
+     },
+     "seamlessPaidItemsRequired": true,
+     "authorizedFeatures": {
+      "whiteLabel": true,
+      "sdkComponentPanel": true,
+      "sdkComponentInCartRewards": true,
+      "sdkComponentAdvanced": true,
+      "referralsAdvancedSharing": true,
+      "integratedPage": true,
+      "sdkJsApi": false,
+      "campaignsPointsMultiplier": true
+     },
+     "featureFlags": {
+      "campaigns": {
+       "birthday_bundle": true,
+       "temporary_incentive_reward_drops": true,
+       "temporary_incentive_points_drops": true
+      },
+      "loyaltyPage": {
+       "headerHtmlEditor": false
+      },
+      "shopify": {
+       "autoApplyVoucherToCart": true
+      },
+      "recharge": {
+       "applyVoucherToSubscription": true
+      },
+      "editor": {
+       "agent": false
+      }
+     },
+     "birthdayCollection": "day_month"
+    },
+    "refereeIncentive": {
+     "minimumSpend": 45,
+     "legacyCode": null,
+     "kind": "cart_discount",
+     "discountAmount": 10,
+     "discountKind": "flat",
+     "appliesToCollectionId": null,
+     "collectionRestrictionText": null,
+     "discountConfig": {}
+    },
+    "rules": [
+     {
+      "id": 40751,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {},
+      "limitAmount": 1,
+      "limitInterval": null,
+      "siteId": 7735,
+      "sortKey": 1,
+      "title": "Create an account",
+      "value": 25,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 25,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 25,
+        "tierId": 695,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 25,
+        "tierId": 696,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 25,
+        "tierId": 697,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "signup",
+      "name": "$signup"
+     },
+     {
+      "id": 40752,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {},
+      "limitAmount": 0,
+      "limitInterval": null,
+      "siteId": 7735,
+      "sortKey": 0,
+      "title": "Make a purchase",
+      "value": 1,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": null,
+        "multiplier": null,
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": 695,
+        "multiplier": null,
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 2,
+        "tierId": 696,
+        "multiplier": null,
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 3,
+        "tierId": 697,
+        "multiplier": null,
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "purchase",
+      "name": "$purchase"
+     },
+     {
+      "id": 40753,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {
+       "trigger": "qualifying_purchase",
+       "qualifyingPurchaseAmount": 45
+      },
+      "limitAmount": 1,
+      "limitInterval": {
+       "months": 1
+      },
+      "siteId": 7735,
+      "sortKey": 2,
+      "title": "Refer a friend (Limit 1 referral per month)",
+      "value": 350,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 350,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 350,
+        "tierId": 695,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 350,
+        "tierId": 696,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 350,
+        "tierId": 697,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "referral",
+      "name": "$referral"
+     },
+     {
+      "id": 40754,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {},
+      "limitAmount": 1,
+      "limitInterval": {
+       "months": 1
+      },
+      "siteId": 7735,
+      "sortKey": 3,
+      "title": "Happy Birthday",
+      "value": 100,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 100,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 100,
+        "tierId": 695,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 200,
+        "tierId": 696,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 300,
+        "tierId": 697,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "birthday",
+      "name": "$birthday"
+     },
+     {
+      "id": 41942,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {
+       "facebookLikeUrl": "https://www.facebook.com/PacificaBeauty"
+      },
+      "limitAmount": 1,
+      "limitInterval": null,
+      "siteId": 7735,
+      "sortKey": 5,
+      "title": "Like us on Facebook",
+      "value": 10,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": 695,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": 696,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": 697,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "facebookLike",
+      "name": "$facebook_like"
+     },
+     {
+      "id": 42503,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": "Earn 10 Points by following us on Instagram.",
+      "properties": {
+       "instagramHandle": "pacificabeauty",
+       "performUsing": "popup"
+      },
+      "limitAmount": 1,
+      "limitInterval": null,
+      "siteId": 7735,
+      "sortKey": 6,
+      "title": "Follow us on Instagram",
+      "value": 10,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": 695,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": 696,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 10,
+        "tierId": 697,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "instagramFollow",
+      "name": "$instagram_follow"
+     },
+     {
+      "id": 47456,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": "Write a Product Review. Maximum 100 points per month.",
+      "properties": {},
+      "limitAmount": 1,
+      "limitInterval": {
+       "months": 1
+      },
+      "siteId": 7735,
+      "sortKey": 11,
+      "title": "Write A Product Review",
+      "value": 100,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 100,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 100,
+        "tierId": 695,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 100,
+        "tierId": 696,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 100,
+        "tierId": 697,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "custom",
+      "name": "bv_reviews"
+     }
+    ],
+    "loyaltyTiers": [
+     {
+      "bounds": {
+       "lower": 0,
+       "upper": 19999
+      },
+      "colour": null,
+      "conditions": null,
+      "default": true,
+      "hidden": false,
+      "id": 695,
+      "name": "Friend Status",
+      "position": 0,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30356,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30470,
+        "cost": 30,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30355,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30354,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30341,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30339,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30338,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30333,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30332,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30330,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 30331,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 29204,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33111,
+        "cost": 250,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33112,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33113,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33114,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33115,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33143,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33144,
+        "cost": 250,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33145,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33146,
+        "cost": 750,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33147,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33171,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33172,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33173,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33174,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33175,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33176,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33177,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33178,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33199,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33200,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33201,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33202,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33203,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33204,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33205,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33206,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33207,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33990,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33991,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 33992,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 63840,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 695,
+        "rewardId": 182101,
+        "cost": 250,
+        "enabled": true
+       }
+      ]
+     },
+     {
+      "bounds": {
+       "lower": 20000,
+       "upper": 49999
+      },
+      "colour": null,
+      "conditions": null,
+      "default": false,
+      "hidden": false,
+      "id": 696,
+      "name": "Girl Crush",
+      "position": 1,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30356,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30470,
+        "cost": 30,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30355,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30354,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30341,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30339,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30338,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30333,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30332,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30330,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 30331,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 29204,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33111,
+        "cost": 250,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33112,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33113,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33114,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33115,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33143,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33144,
+        "cost": 250,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33145,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33146,
+        "cost": 750,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33147,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33171,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33172,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33173,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33174,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33175,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33176,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33177,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33178,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33199,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33200,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33201,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33202,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33203,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33204,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33205,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33206,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33207,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33990,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33991,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 33992,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 63840,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 696,
+        "rewardId": 182101,
+        "cost": 250,
+        "enabled": true
+       }
+      ]
+     },
+     {
+      "bounds": {
+       "lower": 50000,
+       "upper": null
+      },
+      "colour": null,
+      "conditions": null,
+      "default": false,
+      "hidden": false,
+      "id": 697,
+      "name": "Bestie Forever",
+      "position": 2,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30356,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30470,
+        "cost": 30,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30355,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30354,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30341,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30339,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30338,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30333,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30332,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30330,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 30331,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 29204,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33111,
+        "cost": 250,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33112,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33113,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33114,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33115,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33143,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33144,
+        "cost": 250,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33145,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33146,
+        "cost": 750,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33147,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33171,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33172,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33173,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33174,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33175,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33176,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33177,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33178,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33199,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33200,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33201,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33202,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33203,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33204,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33205,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33206,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33207,
+        "cost": 150,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33990,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33991,
+        "cost": 200,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 33992,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 63840,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 697,
+        "rewardId": 182101,
+        "cost": 250,
+        "enabled": true
+       }
+      ]
+     }
+    ],
+    "loyaltyTierBenefits": [
+     {
+      "id": 38,
+      "content": "Free Gift ($25 Value)",
+      "details": null,
+      "loyaltyTierIds": [
+       null
+      ],
+      "secret": false
+     },
+     {
+      "id": 10,
+      "content": "Free Shipping on ALL orders (T&Cs apply)",
+      "details": null,
+      "loyaltyTierIds": [
+       697
+      ],
+      "secret": false
+     },
+     {
+      "id": 9,
+      "content": "Early Access to New Product Launches",
+      "details": null,
+      "loyaltyTierIds": [
+       697,
+       696
+      ],
+      "secret": false
+     },
+     {
+      "id": 11,
+      "content": "Access to exclusive events and private sales",
+      "details": null,
+      "loyaltyTierIds": [
+       697
+      ],
+      "secret": false
+     },
+     {
+      "id": 12,
+      "content": "Free Gift on Birthday",
+      "details": null,
+      "loyaltyTierIds": [
+       697
+      ],
+      "secret": false
+     },
+     {
+      "id": 7,
+      "content": "Free Gift ($10 Value)",
+      "details": null,
+      "loyaltyTierIds": [
+       696
+      ],
+      "secret": false
+     },
+     {
+      "id": 8,
+      "content": "Two Free Shipping Vouchers",
+      "details": null,
+      "loyaltyTierIds": [
+       696
+      ],
+      "secret": false
+     }
+    ],
+    "integrations": [],
+    "otherSites": [],
+    "alienSites": [],
+    "rewards": [
+     {
+      "id": 33143,
+      "title": "$3 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 0,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 100,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 3,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 33144,
+      "title": "$7.50 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 1,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 250,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 7.5,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 33145,
+      "title": "$15 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 2,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 500,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 15,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 33146,
+      "title": "$22.50 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 3,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 750,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 22.5,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 33147,
+      "title": "$30 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 4,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 1000,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 30,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 30470,
+      "title": "Redeem at checkout",
+      "title_template": null,
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 5,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "checkout_redemption",
+      "target_type": "all",
+      "usage_limit": 1,
+      "method": "voucher",
+      "discount_type": "flat",
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 10,
+      "fixed_redemption_amounts": null,
+      "fixed_redemption_amount_min_spends": null,
+      "redemption_amount_step": null,
+      "order_type": "one_time",
+      "target_products": [],
+      "point_cost": 30,
+      "discount_amount": 1,
+      "minimum_spend": null,
+      "target_collections": [],
+      "session_options": {
+       "kind": "checkout",
+       "session_limit": 1
+      },
+      "auto_refund_seconds": 3600,
+      "expiry_options": {
+       "kind": "duration",
+       "seconds": 3600
+      },
+      "redeemable_expiry_options": null,
+      "min_spend_after_discount": null,
+      "min_spend_before_discount": null,
+      "hide_unavailable_discounts": false,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 182101,
+      "title": "Free shipping voucher",
+      "title_template": null,
+      "description": null,
+      "site_id": 7735,
+      "target_site": {
+       "id": 7735,
+       "name": "Pacifica",
+       "url": "https://www.pacificabeauty.com"
+      },
+      "sort_key": 44,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "free_shipping_voucher",
+      "point_cost": 250,
+      "method": "voucher",
+      "discount_type": "percentage",
+      "discount_amount": 100,
+      "minimum_spend": null,
+      "max_free_shipping": 7,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "all",
+      "usage_limit": 1,
+      "target_type": "shipping",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     }
+    ],
+    "__internal": {
+     "unlistedRewards": []
+    }
+   }
+  },
+  "label": {
+   "one": "point",
+   "other": "points"
+  }
+ },
+ "expected": {
+  "ok": true,
+  "block": {
+   "value": "30 points = $1 off at checkout.",
+   "ladder": {
+    "basis": "spend",
+    "unit": "USD",
+    "rungs": [
+     {
+      "rung": "Friend Status",
+      "threshold": 0
+     },
+     {
+      "rung": "Girl Crush",
+      "threshold": 200
+     },
+     {
+      "rung": "Bestie Forever",
+      "threshold": 500
+     }
+    ]
+   }
+  }
+ },
+ "sentence_ok": true
+}

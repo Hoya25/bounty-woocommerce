@@ -23,6 +23,9 @@ final class Open_Bounty_Schema {
 	/** The spec version objects built by this plugin declare. */
 	const OBJECT_VERSION = '0.3';
 
+	/** Objects composed from a loyalty program carry the v0.5 `rewards` block when it can be read. */
+	const LOYALTY_OBJECT_VERSION = '0.5';
+
 	const SCHEMA_TTL = 600; // 10 minutes: the alias moves when a new 0.x ships.
 
 	/** Object versions this plugin will publish: every 0.x, per the spec. */
@@ -151,8 +154,15 @@ final class Open_Bounty_Schema {
 				if ( ! empty( $sub['uniqueItems'] ) && count( array_unique( $val, SORT_REGULAR ) ) !== count( $val ) ) {
 					$issues[] = self::issue( $at, 'must not repeat an entry' );
 				}
+				$items = isset( $sub['items'] ) && is_array( $sub['items'] ) ? $sub['items'] : array();
 				foreach ( $val as $i => $item ) {
-					$issues = array_merge( $issues, self::scalar( $item, isset( $sub['items'] ) ? $sub['items'] : array(), "{$at}[{$i}]" ) );
+					// Arrays of objects (v0.5 ladder rungs, perks) are validated like any object.
+					$issues = array_merge(
+						$issues,
+						isset( $items['type'] ) && 'object' === $items['type']
+							? self::validate( $item, $items, "{$at}[{$i}]." )
+							: self::scalar( $item, $items, "{$at}[{$i}]" )
+					);
 				}
 				continue;
 			}
@@ -170,6 +180,12 @@ final class Open_Bounty_Schema {
 		}
 		if ( 'boolean' === $type && ! is_bool( $val ) ) {
 			return array( self::issue( $at, 'must be true or false' ) );
+		}
+		if ( ( 'number' === $type && ( ! is_int( $val ) && ! is_float( $val ) ) ) || ( 'integer' === $type && ! is_int( $val ) ) ) {
+			return array( self::issue( $at, 'must be a number' ) );
+		}
+		if ( ( is_int( $val ) || is_float( $val ) ) && isset( $sub['minimum'] ) && $val < $sub['minimum'] ) {
+			$issues[] = self::issue( $at, sprintf( 'must be %s or more', $sub['minimum'] ) );
 		}
 		if ( isset( $sub['enum'] ) && ! in_array( $val, $sub['enum'], true ) ) {
 			$issues[] = self::issue( $at, 'must be one of: ' . implode( ', ', $sub['enum'] ) );

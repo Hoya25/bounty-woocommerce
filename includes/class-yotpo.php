@@ -121,7 +121,7 @@ final class Open_Bounty_Yotpo {
 	}
 
 	/** Pure: the single store-wide purchase rule, and everything the sentence needs. */
-	public static function select_rule( array $l, array $widget_labels = array() ) {
+	private static function select_rule_base( array $l, array $widget_labels = array() ) {
 		if ( true !== $l['programLive'] ) {
 			return self::fail( 'program', __( 'Your Yotpo Loyalty program isn\'t live, so purchases don\'t earn points right now.', 'open-bounty' ) );
 		}
@@ -198,6 +198,15 @@ final class Open_Bounty_Yotpo {
 				'redeem'      => $redeem,
 			),
 		);
+	}
+
+	/** The rule, with the v0.5 `rewards` block composed from the same read (a refusal leaves it off the object). */
+	public static function select_rule( array $l, array $widget_labels = array() ) {
+		$read = self::select_rule_base( $l, $widget_labels );
+		if ( $read['ok'] ) {
+			$read['rule']['rewards'] = Open_Bounty_Rewards::yotpo( $l, $read['rule'] );
+		}
+		return $read;
 	}
 
 	/** Runs the chain against this store's own home page. */

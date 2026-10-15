@@ -97,6 +97,8 @@ final class Open_Bounty_Settings {
 			if ( is_wp_error( $object ) ) {
 				$issues[] = array( 'field' => 'NCTR Alliance', 'message' => $object->get_error_message() );
 				$object   = null;
+			} else {
+				$object = Open_Bounty_Store::store_copy( $object );
 			}
 			if ( ! $s['alliance_confirmed'] ) {
 				$issues[] = array(
@@ -408,6 +410,26 @@ final class Open_Bounty_Settings {
 			__( 'Status', 'open-bounty' )         => ! empty( $current['active'] ) ? __( 'bounty active', 'open-bounty' ) : __( 'not currently offering a bounty', 'open-bounty' ),
 			__( 'Last updated', 'open-bounty' )   => $current['updated_at'],
 		);
+		// v0.5 rewards, when the program's data gave a truthful block.
+		$rw = isset( $current['rewards'] ) && is_array( $current['rewards'] ) ? $current['rewards'] : array();
+		if ( ! empty( $rw['value'] ) ) {
+			$rows[ __( 'What points are worth', 'open-bounty' ) ] = $rw['value'];
+		}
+		if ( ! empty( $rw['ladder']['rungs'] ) ) {
+			$unit = isset( $rw['ladder']['unit'] ) ? $rw['ladder']['unit'] : '';
+			$rows[ __( 'Tiers', 'open-bounty' ) ] = implode(
+				' · ',
+				array_map(
+					function ( $r ) use ( $unit ) {
+						return $r['rung'] . ' (' . $r['threshold'] . ' ' . $unit . ')';
+					},
+					$rw['ladder']['rungs']
+				)
+			);
+		}
+		if ( ! empty( $rw['perks'] ) ) {
+			$rows[ __( 'Entry-tier perks', 'open-bounty' ) ] = implode( ' · ', array_column( $rw['perks'], 'name' ) );
+		}
 		foreach ( $rows as $k => $v ) {
 			printf( '<tr><th style="width:11em">%s</th><td>%s</td></tr>', esc_html( $k ), esc_html( $v ) );
 		}
