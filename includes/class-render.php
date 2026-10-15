@@ -50,7 +50,7 @@ final class Open_Bounty_Render {
 			'@type'      => 'PropertyValue',
 			'propertyID' => 'bounty',
 			'name'       => $object['program']['name'] . ' bounty',
-			'value'      => $object['earn']['display'],
+			'value'      => self::display( $object ),
 		);
 		if ( ! empty( $object['api'] ) ) {
 			$property['url'] = $object['api'];
@@ -63,14 +63,16 @@ final class Open_Bounty_Render {
 		if ( ! self::claimable( $object ) ) {
 			return '';
 		}
+		// Spec v0.6 §2e: a labeled region (data-bounty-display + aria-label) with the
+		// sentence verbatim, rendered after the price, in the purchase region.
 		$html = sprintf(
-			'<div class="open-bounty" data-open-bounty>'
+			'<section class="open-bounty" data-open-bounty data-bounty-display aria-label="%1$s">'
 			. '<p class="open-bounty__heading">%1$s</p>'
 			. '<p class="open-bounty__display">%2$s</p>'
 			. '<p class="open-bounty__program">%3$s <a href="%4$s" rel="noopener" target="_blank">%5$s</a></p>'
-			. '</div>',
+			. '</section>',
 			esc_html__( 'Rewards on this purchase', 'open-bounty' ),
-			esc_html( $object['earn']['display'] ),
+			esc_html( self::display( $object ) ),
 			esc_html__( 'Through', 'open-bounty' ),
 			esc_url( $object['program']['url'] ),
 			esc_html( $object['program']['name'] )
@@ -78,11 +80,45 @@ final class Open_Bounty_Render {
 		return Open_Bounty_Gate::allows( $object, $html ) ? $html : '';
 	}
 
+	/** earn.display as one sentence: the string, or a localized object's entry for the site's language, else its default (v0.6). */
+	public static function display( $object ) {
+		$d = isset( $object['earn']['display'] ) ? $object['earn']['display'] : '';
+		if ( ! is_array( $d ) ) {
+			return (string) $d;
+		}
+		$locale = function_exists( 'get_locale' ) ? strtolower( str_replace( '_', '-', get_locale() ) ) : '';
+		foreach ( array( $locale, strtok( $locale, '-' ) ) as $k ) {
+			if ( $k && isset( $d[ $k ] ) && is_string( $d[ $k ] ) ) {
+				return $d[ $k ];
+			}
+		}
+		return isset( $d['default'] ) ? (string) $d['default'] : '';
+	}
+
+	/** v0.6: outside valid_from/valid_until a bounty is inactive. */
+	public static function in_window( $object, $now = null ) {
+		$now = null === $now ? time() : $now;
+		if ( ! empty( $object['valid_from'] ) && strtotime( $object['valid_from'] ) > $now ) {
+			return false;
+		}
+		if ( ! empty( $object['valid_until'] ) ) {
+			$until = strtotime( $object['valid_until'] );
+			if ( 10 === strlen( $object['valid_until'] ) ) {
+				$until += 86399; // A date-only valid_until runs to the end of that day.
+			}
+			if ( false !== $until && $until < $now ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/** True when the object makes a claim a product page may repeat. */
 	private static function claimable( $object ) {
 		return is_array( $object )
 			&& ! empty( $object['active'] )
 			&& isset( $object['earn']['display'], $object['program']['name'], $object['program']['url'] )
+			&& self::in_window( $object )
 			&& Open_Bounty_Gate::allows( $object );
 	}
 }

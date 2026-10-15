@@ -1,0 +1,1638 @@
+{
+ "provider": "loyaltylion",
+ "captured": "2026-10-15",
+ "input": {
+  "start": {
+   "live": true,
+   "digest": "34eac9db36f6af6bddc64f8c0e3fda8b",
+   "uiMode": "integrated_page_only"
+  },
+  "cfg": {
+   "config": {
+    "sdkHost": "sdk.loyaltylion.net",
+    "sdkStaticHost": "sdk-static.loyaltylion.net",
+    "platformHost": "platform.loyaltylion.com",
+    "apiHost": "api.loyaltylion.com",
+    "appHost": "app.loyaltylion.com",
+    "bigCommerceClientId": "rb9cjzk9jybx0lnlz2mbelz9nqzsxjp",
+    "translationsDigest": "34eac9db36f6af6bddc64f8c0e3fda8b",
+    "api": {
+     "build": 54480,
+     "revision": "85b9453290"
+    },
+    "flags": {},
+    "loyaltylionFacebookAppId": "322956231078839",
+    "sdkVersion": "2023-11",
+    "env": "production",
+    "iconBaseUrl": "https://resources.loyaltylion.com/editor-tmp/icons"
+   },
+   "site": {
+    "id": 43624,
+    "currency": {
+     "code": "gbp",
+     "decimalSeparator": ".",
+     "format": "%s%v",
+     "name": "British Pound",
+     "symbol": "£"
+    },
+    "token": "9025b0265ec50515e9891c1fea7bf331",
+    "name": "Oh Polly UK",
+    "domain": "www.ohpolly.com",
+    "settings": {
+     "loyaltyPanel": {
+      "defaultPage": null,
+      "contrastColor": "#fdf4f5",
+      "mainColor": "#fae0df",
+      "customCSSDigest": null
+     },
+     "loyaltyWidget": {
+      "backgroundColors": {
+       "standard": "rgba(77, 56, 75, 1)",
+       "dark": "hsla(306, 16%, 20%, 1)"
+      },
+      "enabled": false,
+      "fontColor": "rgb(255,255,255)",
+      "pagePosition": "right"
+     },
+     "integratedLoyaltyPage": {
+      "createdByMerchant": true,
+      "remoteConfig": {
+       "platform": "shopify",
+       "handle": "rewards",
+       "title": "Oh Polly Rewards",
+       "shopifyPageId": "85499445457",
+       "useAppBlocks": false
+      },
+      "sections": [
+       {
+        "kind": "header",
+        "options": {
+         "showMenu": true,
+         "showIntroText": false,
+         "showPendingPoints": true,
+         "background": ""
+        }
+       },
+       {
+        "kind": "availableRewards",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true,
+         "showUsed": 0
+        }
+       },
+       {
+        "kind": "earn",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "redeem",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "tiersOverview",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       },
+       {
+        "kind": "accountHistory",
+        "options": {
+         "headingOptions": {
+          "background": "",
+          "element": "h3"
+         },
+         "showHeading": true
+        }
+       }
+      ],
+      "updatedAt": "2022-04-06T13:56:55.607Z"
+     },
+     "integratedComponentSettings": {
+      "buttonsEnabled": true,
+      "iconsEnabled": true,
+      "colorAssignments": {
+       "buttons": {
+        "background": "secondary",
+        "text": "white"
+       },
+       "headers": {
+        "background": "white",
+        "text": "primary"
+       },
+       "icons": {
+        "main": "primary"
+       },
+       "tiles": {
+        "background": "white",
+        "text": "black"
+       }
+      }
+     },
+     "integratedLoyaltyPageState": "only",
+     "sdkTheme": "modern",
+     "turnkeyCustomisation": null,
+     "referrals": {
+      "tweetContent": "Check out this store!",
+      "emailContent": "Hey - I thought you might be interested in Oh Polly. Get a £5 discount on your first order, when you spend over £50.\n          ",
+      "guestReferralsEnabled": false
+     },
+     "helpContent": "",
+     "notifications": {
+      "position": "topRight",
+      "desktopPosition": "topRight",
+      "mobilePosition": "top",
+      "showGuestIntroductionPrompt": false,
+      "showPointsNotification": false,
+      "showReferralPrompt": false
+     },
+     "locale": {
+      "primary": "en",
+      "date": "en",
+      "number": "en",
+      "languages": [
+       {
+        "iso_code": "en",
+        "name": "English"
+       }
+      ]
+     },
+     "urls": {
+      "login": "/account/login",
+      "signup": "/account/register"
+     },
+     "currencyConversionEnabled": true,
+     "currencyDisplayMode": null,
+     "currencySymbolPosition": null,
+     "useLegacySdkStandaloneRuleStyle": false,
+     "showStandaloneCheckoutRedemptionReward": true,
+     "showStandaloneSignupRule": true,
+     "useAppTurnkey": false,
+     "useBuyWithPointsScript": true,
+     "useSnakeCaseClaimedRewardsHooksResources": false,
+     "recharge": {
+      "customPortalUrl": null
+     },
+     "redemptionNotification": {
+      "enabled": false,
+      "message": "",
+      "maxRewardsToShow": 3
+     },
+     "customerTrackingConsentMode": "always"
+    },
+    "siteThemeContent": null,
+    "themeConfiguration": {
+     "brand": {
+      "colors.brand.primary": {
+       "red": 250,
+       "green": 224,
+       "blue": 223,
+       "alpha": 1
+      },
+      "colors.brand.secondary": {
+       "red": 253,
+       "green": 244,
+       "blue": 245,
+       "alpha": 1
+      },
+      "colors.call_to_action_buttons.background_color": {
+       "key_color": "secondary"
+      },
+      "colors.call_to_action_buttons.text_color": {
+       "red": 255,
+       "green": 255,
+       "blue": 255,
+       "alpha": 1
+      },
+      "custom_css.global.css": ""
+     },
+     "loyalty_page_earn_points": {
+      "icons.icon_design.icon_color": {
+       "key_color": "primary"
+      }
+     },
+     "loyalty_page_rewards": {
+      "icons.icon_design.icon_color": {
+       "key_color": "primary"
+      }
+     },
+     "loyalty_page": {},
+     "loyalty_page_campaigns": {},
+     "loyalty_page_challenges": {},
+     "loyalty_page_loyalty_pass": {},
+     "loyalty_page_subscription_renewal": {},
+     "loyalty_page_faq": {},
+     "loyalty_page_header": {},
+     "loyalty_page_history": {},
+     "loyalty_page_tier_progress": {},
+     "loyalty_page_tiers": {},
+     "loyalty_page_your_rewards": {},
+     "birthday_bundle": {},
+     "points_multiplier": {}
+    },
+    "platform": "shopify",
+    "role": "ecommerce",
+    "meta": {
+     "loyaltyPanelCustomisationDigest": "967cddd49f4b92eb6fe2bc20a1566cdc",
+     "legacyUiMigration": {
+      "actionsCompleted": [],
+      "deadlineDate": null,
+      "lastPromptedAt": null,
+      "migrationState": "not_started",
+      "migrationTarget": "turnkey",
+      "selectedForMigration": false
+     },
+     "preThemeEditorOverrides": {}
+    },
+    "notifications": [
+     {
+      "id": 266789,
+      "kind": "tier",
+      "enabled": true,
+      "settings": {}
+     },
+     {
+      "id": 280676,
+      "kind": "post_purchase_signup",
+      "enabled": true,
+      "settings": {
+       "message": "You’ve unlocked Oh Polly Rewards points – add these to your account by logging in. \nNot a member yet? Join today to earn access to early sales, exclusive discounts and a whole lot more",
+       "messageText": {
+        "en": "You’ve unlocked Oh Polly Rewards points – add these to your account by logging in. \nNot a member yet? Join today to earn access to early sales, exclusive discounts and a whole lot more"
+       }
+      }
+     }
+    ],
+    "uiMode": "integrated_page_only",
+    "subscriptionBuyWithPointsEnabled": false,
+    "translationOverrides": {
+     "sdk.checkout_extension.subheader.cart_value_under_min_redeemable_value": "You can redeem a minimum of £5 per order",
+     "sdk.checkout_redemption.help_text_minimum_spend_not_met": "You can redeem a minimum of £5 per order",
+     "sdk.guest_introduction": "Did you know you can sign up to our Rewards programme and earn points to spend in our Black Friday sales?",
+     "sdk.integrated_page.welcome_guest.log_in": "Sign up",
+     "ui.dashboard.tiers.user_moved_tier_notification": "You're now in the %{tier_name} tier! Click here to find out more about your newest benefits from Oh Polly Rewards.",
+     "ui.guest_sign_up_notification.heading": "Good News",
+     "ui.guest_sign_up_notification.sign_up": "Log in",
+     "ui.referral_popup.learn_more": "Sign up now",
+     "ui.referree_notification.blocked_referral_text": "It looks like your referral didn't quite work out. Just a friendly reminder that referrals are only for first-time customers and can't be used by people in the same household."
+    }
+   },
+   "program": {
+    "id": 43510,
+    "name": "Oh Polly Rewards",
+    "settings": {
+     "dropAnalyticTracking": false,
+     "dropGuestPageviews": true,
+     "instantPointsEnabled": false,
+     "loyaltyTiersEnabled": true,
+     "loyaltyTiersMode": "points",
+     "loyaltyTiersDurationMonths": 12,
+     "pointExpiryEnabled": true,
+     "pointExpiryResetEvent": "order",
+     "pointExpiryMonths": 12,
+     "pointExpiryMode": "account_inactivity",
+     "merchantFacebookAppId": null,
+     "referrals": {
+      "incentive": null
+     },
+     "seamlessPaidItemsRequired": true,
+     "authorizedFeatures": {
+      "whiteLabel": true,
+      "sdkComponentPanel": true,
+      "sdkComponentInCartRewards": true,
+      "sdkComponentAdvanced": true,
+      "referralsAdvancedSharing": true,
+      "integratedPage": true,
+      "sdkJsApi": false,
+      "campaignsPointsMultiplier": true
+     },
+     "featureFlags": {
+      "campaigns": {
+       "birthday_bundle": true,
+       "temporary_incentive_reward_drops": true,
+       "temporary_incentive_points_drops": true
+      },
+      "loyaltyPage": {
+       "headerHtmlEditor": false
+      },
+      "shopify": {
+       "autoApplyVoucherToCart": true
+      },
+      "recharge": {
+       "applyVoucherToSubscription": true
+      },
+      "editor": {
+       "agent": false
+      }
+     },
+     "birthdayCollection": "day_month_year"
+    },
+    "refereeIncentive": {
+     "minimumSpend": 50,
+     "legacyCode": null,
+     "kind": "cart_discount",
+     "discountAmount": 5,
+     "discountKind": "flat",
+     "appliesToCollectionId": null,
+     "collectionRestrictionText": null,
+     "discountConfig": {}
+    },
+    "rules": [
+     {
+      "id": 172885,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {},
+      "limitAmount": 0,
+      "limitInterval": null,
+      "siteId": 43624,
+      "sortKey": 1,
+      "title": "Make a purchase",
+      "value": 5,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 5,
+        "tierId": null,
+        "multiplier": null,
+        "modifiers": [
+         {
+          "id": "a953295b-cdd6-42c9-bed4-6ba68adba258",
+          "kind": "line_item_override",
+          "label": "E-GIFT CARD",
+          "override": {
+           "kind": "product",
+           "value": 0,
+           "multiplier": "0",
+           "merchantProductId": "7186358468817",
+           "merchantVariantIds": null,
+           "allVariantsSelected": true
+          }
+         }
+        ],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 5,
+        "tierId": 15560,
+        "multiplier": null,
+        "modifiers": [
+         {
+          "id": "a953295b-cdd6-42c9-bed4-6ba68adba258",
+          "kind": "line_item_override",
+          "label": "E-GIFT CARD",
+          "override": {
+           "kind": "product",
+           "value": 0,
+           "multiplier": "0",
+           "merchantProductId": "7186358468817",
+           "merchantVariantIds": null,
+           "allVariantsSelected": true
+          }
+         }
+        ],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 5,
+        "tierId": 15561,
+        "multiplier": null,
+        "modifiers": [
+         {
+          "id": "a953295b-cdd6-42c9-bed4-6ba68adba258",
+          "kind": "line_item_override",
+          "label": "E-GIFT CARD",
+          "override": {
+           "kind": "product",
+           "value": 0,
+           "multiplier": "0",
+           "merchantProductId": "7186358468817",
+           "merchantVariantIds": null,
+           "allVariantsSelected": true
+          }
+         }
+        ],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 5,
+        "tierId": 15562,
+        "multiplier": null,
+        "modifiers": [
+         {
+          "id": "a953295b-cdd6-42c9-bed4-6ba68adba258",
+          "kind": "line_item_override",
+          "label": "E-GIFT CARD",
+          "override": {
+           "kind": "product",
+           "value": 0,
+           "multiplier": "0",
+           "merchantProductId": "7186358468817",
+           "merchantVariantIds": null,
+           "allVariantsSelected": true
+          }
+         }
+        ],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 5,
+        "tierId": 15563,
+        "multiplier": null,
+        "modifiers": [
+         {
+          "id": "a953295b-cdd6-42c9-bed4-6ba68adba258",
+          "kind": "line_item_override",
+          "label": "E-GIFT CARD",
+          "override": {
+           "kind": "product",
+           "value": 0,
+           "multiplier": "0",
+           "merchantProductId": "7186358468817",
+           "merchantVariantIds": null,
+           "allVariantsSelected": true
+          }
+         }
+        ],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "purchase",
+      "name": "$purchase"
+     },
+     {
+      "id": 172894,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {},
+      "limitAmount": 1,
+      "limitInterval": {
+       "years": 1
+      },
+      "siteId": 43624,
+      "sortKey": 6,
+      "title": "Happy Birthday",
+      "value": 1,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": 15560,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": 15561,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": 15562,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 1,
+        "tierId": 15563,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "birthday",
+      "name": "$birthday"
+     },
+     {
+      "id": 172895,
+      "actionUrl": null,
+      "deactivated": false,
+      "deleted": false,
+      "enabled": true,
+      "description": null,
+      "properties": {
+       "trigger": "qualifying_purchase",
+       "qualifyingPurchaseAmount": 50
+      },
+      "limitAmount": 0,
+      "limitInterval": {
+       "months": 1
+      },
+      "siteId": 43624,
+      "sortKey": 7,
+      "title": "Refer a friend",
+      "value": 500,
+      "configurations": [
+       {
+        "enabled": true,
+        "value": 500,
+        "tierId": null,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 500,
+        "tierId": 15560,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 500,
+        "tierId": 15561,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 500,
+        "tierId": 15562,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       },
+       {
+        "enabled": true,
+        "value": 500,
+        "tierId": 15563,
+        "multiplier": "1.0",
+        "modifiers": [],
+        "rewardId": null,
+        "reward": null
+       }
+      ],
+      "kind": "referral",
+      "name": "$referral"
+     }
+    ],
+    "loyaltyTiers": [
+     {
+      "bounds": {
+       "lower": 0,
+       "upper": 999
+      },
+      "colour": "#eb9694",
+      "conditions": null,
+      "default": true,
+      "hidden": false,
+      "id": 15560,
+      "name": "Bronze",
+      "position": 0,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 142428,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 142249,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 142248,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 142427,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174928,
+        "cost": 1500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174929,
+        "cost": 2500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174930,
+        "cost": 3000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174931,
+        "cost": 3500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174932,
+        "cost": 4000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174933,
+        "cost": 4500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15560,
+        "rewardId": 174934,
+        "cost": 5000,
+        "enabled": true
+       }
+      ]
+     },
+     {
+      "bounds": {
+       "lower": 1000,
+       "upper": 2499
+      },
+      "colour": "#c4def6",
+      "conditions": null,
+      "default": false,
+      "hidden": false,
+      "id": 15561,
+      "name": "Silver",
+      "position": 1,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 142428,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 142249,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 142248,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 142427,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174928,
+        "cost": 1500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174929,
+        "cost": 2500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174930,
+        "cost": 3000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174931,
+        "cost": 3500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174932,
+        "cost": 4000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174933,
+        "cost": 4500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15561,
+        "rewardId": 174934,
+        "cost": 5000,
+        "enabled": true
+       }
+      ]
+     },
+     {
+      "bounds": {
+       "lower": 2500,
+       "upper": 4999
+      },
+      "colour": "#fef3bd",
+      "conditions": null,
+      "default": false,
+      "hidden": false,
+      "id": 15562,
+      "name": "Gold",
+      "position": 2,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 142428,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 142249,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 142248,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 142427,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174928,
+        "cost": 1500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174929,
+        "cost": 2500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174930,
+        "cost": 3000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174931,
+        "cost": 3500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174932,
+        "cost": 4000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174933,
+        "cost": 4500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15562,
+        "rewardId": 174934,
+        "cost": 5000,
+        "enabled": true
+       }
+      ]
+     },
+     {
+      "bounds": {
+       "lower": 5000,
+       "upper": null
+      },
+      "colour": "#c4def6",
+      "conditions": null,
+      "default": false,
+      "hidden": false,
+      "id": 15563,
+      "name": "Platinum",
+      "position": 3,
+      "rewardOverrides": [
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 142428,
+        "cost": 2000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 142249,
+        "cost": 1000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 142248,
+        "cost": 500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 142427,
+        "cost": 100,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174928,
+        "cost": 1500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174929,
+        "cost": 2500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174930,
+        "cost": 3000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174931,
+        "cost": 3500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174932,
+        "cost": 4000,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174933,
+        "cost": 4500,
+        "enabled": true
+       },
+       {
+        "loyaltyTierId": 15563,
+        "rewardId": 174934,
+        "cost": 5000,
+        "enabled": true
+       }
+      ]
+     }
+    ],
+    "loyaltyTierBenefits": [
+     {
+      "id": 65493,
+      "content": "Points with every purchase",
+      "details": null,
+      "loyaltyTierIds": [
+       15561,
+       15560,
+       15563,
+       15562
+      ],
+      "secret": false
+     },
+     {
+      "id": 65494,
+      "content": "Double points days",
+      "details": null,
+      "loyaltyTierIds": [
+       15560,
+       15561,
+       15562,
+       15563
+      ],
+      "secret": false
+     },
+     {
+      "id": 65495,
+      "content": "Discount after first purchase",
+      "details": null,
+      "loyaltyTierIds": [
+       15560
+      ],
+      "secret": false
+     },
+     {
+      "id": 65496,
+      "content": "New tier discount",
+      "details": null,
+      "loyaltyTierIds": [
+       15561,
+       15563,
+       15562
+      ],
+      "secret": false
+     },
+     {
+      "id": 65497,
+      "content": "Birthday points",
+      "details": null,
+      "loyaltyTierIds": [
+       15561,
+       15562,
+       15563
+      ],
+      "secret": false
+     },
+     {
+      "id": 65498,
+      "content": "Early access to latest collections",
+      "details": null,
+      "loyaltyTierIds": [
+       15563,
+       15561,
+       15562
+      ],
+      "secret": false
+     },
+     {
+      "id": 65499,
+      "content": "Secret sale days",
+      "details": null,
+      "loyaltyTierIds": [
+       15562,
+       15563
+      ],
+      "secret": false
+     },
+     {
+      "id": 65500,
+      "content": "Free next-day delivery for a year (UK only, on orders over £40)",
+      "details": null,
+      "loyaltyTierIds": [
+       15562,
+       15563
+      ],
+      "secret": false
+     },
+     {
+      "id": 65501,
+      "content": "Triple points days",
+      "details": null,
+      "loyaltyTierIds": [
+       15563
+      ],
+      "secret": false
+     },
+     {
+      "id": 65502,
+      "content": "VIP phoneline",
+      "details": null,
+      "loyaltyTierIds": [
+       15563
+      ],
+      "secret": false
+     }
+    ],
+    "integrations": [],
+    "otherSites": [],
+    "alienSites": [],
+    "rewards": [
+     {
+      "id": 142248,
+      "title": "£5 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 0,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 500,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 5,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 142249,
+      "title": "£10 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 1,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 1000,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 10,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174928,
+      "title": "£15 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 2,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 1500,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 15,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 142428,
+      "title": "£20 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 3,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 2000,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 20,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174929,
+      "title": "£25 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 4,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 2500,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 25,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174930,
+      "title": "£30 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 5,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 3000,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 30,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174931,
+      "title": "£35 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 6,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 3500,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 35,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174932,
+      "title": "£40 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 7,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 4000,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 40,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174933,
+      "title": "£45 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 8,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 4500,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 45,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 174934,
+      "title": "£50 voucher",
+      "title_template": "{{currency_value}} voucher",
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 9,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "pos",
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "cart_discount_voucher",
+      "point_cost": 5000,
+      "method": "voucher",
+      "discount_type": "flat",
+      "discount_amount": 50,
+      "minimum_spend": null,
+      "max_free_shipping": null,
+      "min_redemption_amount": 1,
+      "max_redemption_amount": 1,
+      "order_type": "one_time",
+      "usage_limit": 1,
+      "recurring_cycle_limit": 1,
+      "target_type": "all",
+      "target_products": [],
+      "target_collections": [],
+      "session_options": null,
+      "auto_refund_seconds": null,
+      "expiry_options": {
+       "kind": "does_not_expire",
+       "seconds": null
+      },
+      "redeemable_expiry_options": null,
+      "stock_status": "in_stock"
+     },
+     {
+      "id": 142427,
+      "title": "Redeem at checkout",
+      "title_template": null,
+      "description": null,
+      "site_id": 43624,
+      "target_site": {
+       "id": 43624,
+       "name": "Oh Polly UK",
+       "url": "https://www.ohpolly.com"
+      },
+      "sort_key": 10,
+      "content": {
+       "featured_image_url": null
+      },
+      "supported_channels": [
+       "web",
+       "mobile"
+      ],
+      "available_countries": null,
+      "kind": "checkout_redemption",
+      "target_type": "all",
+      "usage_limit": 1,
+      "method": "voucher",
+      "discount_type": "flat",
+      "max_free_shipping": null,
+      "min_redemption_amount": 5,
+      "max_redemption_amount": 50,
+      "fixed_redemption_amounts": null,
+      "fixed_redemption_amount_min_spends": null,
+      "redemption_amount_step": null,
+      "order_type": "one_time",
+      "target_products": [],
+      "point_cost": 100,
+      "discount_amount": 1,
+      "minimum_spend": null,
+      "target_collections": [],
+      "session_options": {
+       "kind": "checkout",
+       "session_limit": 1
+      },
+      "auto_refund_seconds": 3600,
+      "expiry_options": {
+       "kind": "duration",
+       "seconds": 3600
+      },
+      "redeemable_expiry_options": null,
+      "min_spend_after_discount": null,
+      "min_spend_before_discount": null,
+      "hide_unavailable_discounts": false,
+      "stock_status": "in_stock"
+     }
+    ],
+    "__internal": {
+     "unlistedRewards": []
+    }
+   }
+  },
+  "label": {
+   "one": "point",
+   "other": "points"
+  }
+ },
+ "expected": {
+  "ok": true,
+  "block": {
+   "value": "100 points = £1 off at checkout.",
+   "ladder": {
+    "basis": "earned",
+    "unit": "points",
+    "note": "Points earned are counted over the last 12 months.",
+    "rungs": [
+     {
+      "rung": "Bronze",
+      "threshold": 0
+     },
+     {
+      "rung": "Silver",
+      "threshold": 1000
+     },
+     {
+      "rung": "Gold",
+      "threshold": 2500
+     },
+     {
+      "rung": "Platinum",
+      "threshold": 5000
+     }
+    ]
+   },
+   "perks": [
+    {
+     "name": "Points with every purchase",
+     "state": "funded"
+    },
+    {
+     "name": "Double points days",
+     "state": "funded"
+    },
+    {
+     "name": "Discount after first purchase",
+     "state": "funded"
+    }
+   ]
+  }
+ },
+ "sentence_ok": true,
+ "expected_v06": {
+  "sentence": "Members earn 5 points per £1, redeemable at checkout.",
+  "currency": "GBP",
+  "eligibility": {
+   "who": "members"
+  },
+  "conditions": [
+   {
+    "type": "points_expire",
+    "value": 12,
+    "note": "Points expire after 12 months without account activity."
+   }
+  ],
+  "valid_until": null
+ }
+}

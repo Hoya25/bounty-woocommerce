@@ -20,7 +20,7 @@ final class RewardsTest extends TestCase {
 	}
 
 	public static function parity_cases() {
-		return array( array( 'k-swiss' ), array( 'liquiddeath' ), array( 'oliveandjune' ), array( 'pacificabeauty' ) );
+		return array( array( 'k-swiss' ), array( 'liquiddeath' ), array( 'oliveandjune' ), array( 'pacificabeauty' ), array( 'ohpolly-uk' ) );
 	}
 
 	#[DataProvider( 'parity_cases' )]
@@ -46,15 +46,23 @@ final class RewardsTest extends TestCase {
 		} else {
 			$this->assertSame( $f['expected']['reason'], $got['reason'] );
 		}
+
+		// v0.6: the sentence (any currency), eligibility, conditions and end date, byte for byte.
+		$v = $f['expected_v06'];
+		$this->assertSame( $v['sentence'], Open_Bounty_Smile::compose( $read['rule'], 'Members' ) );
+		$this->assertSame( $v['currency'], $read['rule']['currency'] );
+		$this->assertSame( wp_json_encode( $v['eligibility'] ), wp_json_encode( $read['rule']['eligibility'] ) );
+		$this->assertSame( wp_json_encode( $v['conditions'] ), wp_json_encode( $read['rule']['conditions'] ) );
+		$this->assertSame( $v['valid_until'], isset( $read['rule']['valid_until'] ) ? $read['rule']['valid_until'] : null );
 	}
 
 	public function test_object_carries_rewards_only_when_composed_and_validates() {
 		$f    = self::fixture( 'oliveandjune' );
 		$read = Open_Bounty_Yotpo::select_rule( $f['input'], array() );
 		$obj  = Open_Bounty_Smile::build_object( $read['rule'], 'Members', 'Olive & June', 'https://oliveandjune.example/' );
-		$this->assertSame( '0.5', $obj['bounty_schema_version'] );
+		$this->assertSame( '0.6', $obj['bounty_schema_version'] );
 		$this->assertSame( '250 Points = $5 off at checkout, on orders of $15 or more.', $obj['rewards']['value'] );
-		$schema = json_decode( file_get_contents( __DIR__ . '/fixtures/bounty-v0.5.schema.json' ), true );
+		$schema = json_decode( file_get_contents( __DIR__ . '/fixtures/bounty-v1.json' ), true );
 		$this->assertSame( array(), Open_Bounty_Schema::validate( $obj, $schema ) );
 
 		$ld   = self::fixture( 'liquiddeath' );
@@ -65,7 +73,7 @@ final class RewardsTest extends TestCase {
 	}
 
 	public function test_validator_now_checks_inside_rungs_and_perks() {
-		$schema = json_decode( file_get_contents( __DIR__ . '/fixtures/bounty-v0.5.schema.json' ), true );
+		$schema = json_decode( file_get_contents( __DIR__ . '/fixtures/bounty-v1.json' ), true );
 		$base   = array( 'bounty_schema_version' => '0.5', 'active' => true, 'program' => array( 'name' => 'x', 'url' => 'https://x.test' ), 'earn' => array( 'display' => 'y' ), 'updated_at' => '2026-10-15' );
 		$bad    = array(
 			array( 'ladder' => array( 'basis' => 'spend', 'unit' => 'USD', 'rungs' => array( array( 'rung' => 'A', 'threshold' => -1 ) ) ) ),

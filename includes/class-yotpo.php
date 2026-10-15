@@ -25,7 +25,6 @@ defined( 'ABSPATH' ) || exit;
 
 final class Open_Bounty_Yotpo {
 
-	const DOLLAR_CURRENCIES = array( 'USD', 'CAD', 'AUD', 'NZD' );
 
 	public static function guid( $html ) {
 		$html = (string) $html;
@@ -165,8 +164,9 @@ final class Open_Bounty_Yotpo {
 		}
 
 		$currency = strtoupper( (string) ( isset( $l['merchant']['currency']['currency_iso'] ) ? $l['merchant']['currency']['currency_iso'] : '' ) );
-		if ( ! in_array( $currency, self::DOLLAR_CURRENCIES, true ) ) {
-			return self::fail( 'currency', __( 'Your Yotpo program doesn\'t earn in dollars, and this sentence says "per dollar".', 'open-bounty' ) );
+		// v0.6: any currency; the sentence says "per dollar" for dollars and "per £1" otherwise.
+		if ( ! Open_Bounty_Rewards::is_currency( $currency ) ) {
+			return self::fail( 'currency', __( 'Yotpo doesn\'t say which currency your program earns in.', 'open-bounty' ) );
 		}
 
 		$legacy = isset( $l['localization']['points'] ) && is_string( $l['localization']['points'] ) ? trim( $l['localization']['points'] ) : '';
@@ -204,7 +204,17 @@ final class Open_Bounty_Yotpo {
 	public static function select_rule( array $l, array $widget_labels = array() ) {
 		$read = self::select_rule_base( $l, $widget_labels );
 		if ( $read['ok'] ) {
-			$read['rule']['rewards'] = Open_Bounty_Rewards::yotpo( $l, $read['rule'] );
+			$read['rule']['rewards']     = Open_Bounty_Rewards::yotpo( $l, $read['rule'] );
+			$read['rule']['eligibility'] = Open_Bounty_Rewards::members( Open_Bounty_Rewards::clean_url( isset( $l['merchant']['store_account_registration_url'] ) ? $l['merchant']['store_account_registration_url'] : '' ) );
+			$campaign = null;
+			foreach ( isset( $l['campaigns'] ) ? (array) $l['campaigns'] : array() as $c ) {
+				if ( isset( $c['id'] ) && (int) $c['id'] === (int) $read['rule']['rule_id'] ) {
+					$campaign = $c;
+				}
+			}
+			list( $conditions, $until )   = Open_Bounty_Rewards::yotpo_conditions( (array) $campaign, $read['rule']['currency'], $read['rule']['label_other'] );
+			$read['rule']['conditions']  = $conditions;
+			$read['rule']['valid_until'] = $until;
 		}
 		return $read;
 	}

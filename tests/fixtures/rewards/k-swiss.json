@@ -201,7 +201,7 @@
       "customized_fulfill_reason_text_template": null,
       "customized_image_temp_s3_key": null,
       "customized_image_url": null,
-      "rewarded_count": 106644,
+      "rewarded_count": 106649,
       "reward_value_type": "fixed",
       "default_sort_order": 100,
       "multiplier": null,
@@ -239,7 +239,7 @@
       "customized_fulfill_reason_text_template": null,
       "customized_image_temp_s3_key": null,
       "customized_image_url": null,
-      "rewarded_count": 85548,
+      "rewarded_count": 85552,
       "reward_value_type": "variable",
       "default_sort_order": 1000000000000,
       "multiplier": 2,
@@ -1131,7 +1131,7 @@
       "external_id": null,
       "supports_consumable_codes": false,
       "consumable_codes_available_count": null,
-      "reward_fulfillments_count": 755,
+      "reward_fulfillments_count": 757,
       "created_at": "2025-03-21T18:28:49.706Z",
       "updated_at": "2025-03-21T18:28:49.706Z",
       "prefix": null,
@@ -2230,5 +2230,21 @@
    }
   }
  },
- "sentence_ok": true
+ "sentence_ok": true,
+ "expected_v06": {
+  "sentence": "Members earn 2 K-Swiss Points per dollar, redeemable at checkout.",
+  "currency": "USD",
+  "eligibility": {
+   "who": "members",
+   "join_url": "http://kswiss.com/account/register"
+  },
+  "conditions": [
+   {
+    "type": "points_expire",
+    "value": 180,
+    "note": "K-Swiss Points expire after 180 days without account activity."
+   }
+  ],
+  "valid_until": null
+ }
 }

@@ -23250,5 +23250,15 @@
    }
   }
  },
- "sentence_ok": true
+ "sentence_ok": true,
+ "expected_v06": {
+  "sentence": "Members earn 1 Point per dollar, redeemable at checkout.",
+  "currency": "USD",
+  "eligibility": {
+   "who": "members",
+   "join_url": "https://oliveandjune.com/account/register"
+  },
+  "conditions": [],
+  "valid_until": null
+ }
 }

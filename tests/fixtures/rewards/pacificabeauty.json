@@ -148,8 +148,8 @@
         }
        }
       ],
-      "createdAt": "2026-10-15T18:40:34.147Z",
-      "updatedAt": "2026-10-15T18:40:34.147Z",
+      "createdAt": "2026-10-15T19:41:10.884Z",
+      "updatedAt": "2026-10-15T19:41:10.884Z",
       "remoteConfig": {
        "platform": "shopify",
        "handle": "rewards",
@@ -2049,5 +2049,15 @@
    }
   }
  },
- "sentence_ok": true
+ "sentence_ok": true,
+ "expected_v06": {
+  "sentence": "Members earn 1 point per dollar, redeemable at checkout.",
+  "currency": "USD",
+  "eligibility": {
+   "who": "members",
+   "join_url": "https://account.pacificabeauty.com/"
+  },
+  "conditions": [],
+  "valid_until": null
+ }
 }

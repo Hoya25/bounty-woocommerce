@@ -4,7 +4,7 @@ Tags: woocommerce, rewards, loyalty, ai, structured data
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 

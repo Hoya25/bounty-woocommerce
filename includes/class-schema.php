@@ -24,7 +24,7 @@ final class Open_Bounty_Schema {
 	const OBJECT_VERSION = '0.3';
 
 	/** Objects composed from a loyalty program carry the v0.5 `rewards` block when it can be read. */
-	const LOYALTY_OBJECT_VERSION = '0.5';
+	const LOYALTY_OBJECT_VERSION = '0.6';
 
 	const SCHEMA_TTL = 600; // 10 minutes: the alias moves when a new 0.x ships.
 
@@ -126,11 +126,20 @@ final class Open_Bounty_Schema {
 				$issues[] = self::issue( $path . $key, 'is required' );
 			}
 		}
-		if ( isset( $schema['additionalProperties'] ) && false === $schema['additionalProperties'] ) {
-			foreach ( array_keys( $doc ) as $key ) {
-				if ( ! isset( $props[ $key ] ) ) {
-					$issues[] = self::issue( $path . $key, 'is not permitted by the schema' );
+		$patterns = isset( $schema['patternProperties'] ) && is_array( $schema['patternProperties'] ) ? $schema['patternProperties'] : array();
+		foreach ( array_keys( $doc ) as $key ) {
+			if ( isset( $props[ $key ] ) ) {
+				continue;
+			}
+			$matched = false;
+			foreach ( $patterns as $pattern => $sub ) {
+				if ( preg_match( '~' . str_replace( '~', '\~', $pattern ) . '~u', (string) $key ) ) {
+					$matched = true;
+					$issues  = array_merge( $issues, self::one( $doc[ $key ], $sub, $path . $key ) );
 				}
+			}
+			if ( ! $matched && isset( $schema['additionalProperties'] ) && false === $schema['additionalProperties'] ) {
+				$issues[] = self::issue( $path . $key, 'is not permitted by the schema' );
 			}
 		}
 
@@ -141,6 +150,26 @@ final class Open_Bounty_Schema {
 			$val  = $doc[ $key ];
 			$at   = $path . $key;
 			$type = isset( $sub['type'] ) ? $sub['type'] : null;
+
+			// oneOf / anyOf (v0.6: earn.display is a sentence or a locale map; a
+			// condition's value is text, a number or true/false). Valid when one
+			// form fits; otherwise report the form that matches the value's type.
+			$forms = isset( $sub['oneOf'] ) ? $sub['oneOf'] : ( isset( $sub['anyOf'] ) && ! $type ? $sub['anyOf'] : null );
+			if ( is_array( $forms ) ) {
+				$best = null;
+				foreach ( $forms as $form ) {
+					$found = self::one( $val, $form, $at );
+					if ( ! $found ) {
+						$best = array();
+						break;
+					}
+					if ( null === $best || self::type_fits( $val, $form ) ) {
+						$best = $found;
+					}
+				}
+				$issues = array_merge( $issues, $best );
+				continue;
+			}
 
 			if ( 'object' === $type ) {
 				$issues = array_merge( $issues, self::validate( $val, $sub, $at . '.' ) );
@@ -169,6 +198,21 @@ final class Open_Bounty_Schema {
 			$issues = array_merge( $issues, self::scalar( $val, $sub, $at ) );
 		}
 		return $issues;
+	}
+
+	/** One value against one (sub)schema, whatever its type. */
+	private static function one( $val, array $sub, $at ) {
+		$type = isset( $sub['type'] ) ? $sub['type'] : null;
+		if ( 'object' === $type ) {
+			return self::validate( $val, $sub, $at . '.' );
+		}
+		return self::scalar( $val, $sub, $at );
+	}
+
+	private static function type_fits( $val, array $sub ) {
+		$type = isset( $sub['type'] ) ? $sub['type'] : null;
+		return ( 'object' === $type && is_array( $val ) ) || ( 'string' === $type && is_string( $val ) )
+			|| ( 'number' === $type && ( is_int( $val ) || is_float( $val ) ) ) || ( 'boolean' === $type && is_bool( $val ) );
 	}
 
 	private static function scalar( $val, array $sub, $at ) {

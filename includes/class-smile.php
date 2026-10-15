@@ -26,7 +26,6 @@ defined( 'ABSPATH' ) || exit;
 final class Open_Bounty_Smile {
 
 	const PURCHASE_TYPES   = array( 'shopify_online_order', 'bigcommerce_order' );
-	const DOLLAR_CURRENCIES = array( 'USD', 'CAD', 'AUD', 'NZD' );
 	const NOUNS            = array( 'Members', 'Customers' );
 
 	/** Channel key from Smile's init markup, or null. */
@@ -78,6 +77,10 @@ final class Open_Bounty_Smile {
 			return self::fail( 'rule', __( 'Smile.io reports more than one purchase rule, so there\'s no single rate to state.', 'open-bounty' ) );
 		}
 		$rule = $purchase[0];
+		// A cap on how often the rule pays means "per dollar" doesn't hold for every purchase.
+		if ( ! empty( $rule['earning_limit'] ) ) {
+			return self::fail( 'rule', __( 'Your Smile.io purchase rule only pays a limited number of times, so "per dollar" wouldn\'t hold for every purchase.', 'open-bounty' ) );
+		}
 
 		if ( 'variable' !== self::dig( $rule, array( 'reward_value', 'type' ) ) ) {
 			return self::fail( 'rule', __( 'Your Smile.io purchase rule pays a fixed amount per order, not per dollar, so this sentence can\'t describe it.', 'open-bounty' ) );
@@ -91,8 +94,9 @@ final class Open_Bounty_Smile {
 		$rate = round( $value / $per, 2 );
 
 		$currency = strtoupper( (string) self::dig( $r, array( 'init', 'account', 'currency', 'iso_code' ) ) );
-		if ( ! in_array( $currency, self::DOLLAR_CURRENCIES, true ) ) {
-			return self::fail( 'currency', __( 'Your Smile.io program doesn\'t earn in dollars, and this sentence says "per dollar".', 'open-bounty' ) );
+		// v0.6: any currency; the sentence says "per dollar" for dollars and "per £1" otherwise.
+		if ( ! Open_Bounty_Rewards::is_currency( $currency ) ) {
+			return self::fail( 'currency', __( 'Smile.io doesn\'t say which currency your program earns in.', 'open-bounty' ) );
 		}
 
 		$one   = trim( (string) self::dig( $r, array( 'programData', 'points_settings', 'points_label', 'one' ) ) );
@@ -125,7 +129,9 @@ final class Open_Bounty_Smile {
 	public static function select_rule( array $r ) {
 		$read = self::select_rule_base( $r );
 		if ( $read['ok'] ) {
-			$read['rule']['rewards'] = Open_Bounty_Rewards::smile( $r, $read['rule'] );
+			$read['rule']['rewards']     = Open_Bounty_Rewards::smile( $r, $read['rule'] );
+			$read['rule']['eligibility'] = Open_Bounty_Rewards::members( Open_Bounty_Rewards::clean_url( isset( $r['init']['sales_channel']['customer_signup_url'] ) ? $r['init']['sales_channel']['customer_signup_url'] : '' ) );
+			$read['rule']['conditions']  = Open_Bounty_Rewards::smile_conditions( isset( $r['init']['points_program'] ) ? $r['init']['points_program'] : array(), $read['rule']['label_other'] );
 		}
 		return $read;
 	}
@@ -136,7 +142,7 @@ final class Open_Bounty_Smile {
 		$rate  = $rule['rate'];
 		$n     = ( floor( $rate ) == $rate ) ? (string) (int) $rate : rtrim( rtrim( number_format( $rate, 2, '.', '' ), '0' ), '.' ); // phpcs:ignore Universal.Operators.StrictComparisons
 		$label = '1' === $n ? $rule['label_one'] : $rule['label_other'];
-		return sprintf( '%s earn %s %s per dollar, redeemable at checkout.', $noun, $n, $label );
+		return sprintf( '%s earn %s %s %s, redeemable at checkout.', $noun, $n, $label, Open_Bounty_Rewards::per_unit( $rule['currency'] ) );
 	}
 
 	/** The object for this store, or a refusal. */
@@ -153,8 +159,12 @@ final class Open_Bounty_Smile {
 				'denomination' => $rule['label_other'],
 				'type'         => 'points',
 			),
+			'currency'              => $rule['currency'],
 			'updated_at'            => gmdate( 'Y-m-d' ),
-		) + ( ! empty( $rule['rewards']['ok'] ) ? array( 'rewards' => $rule['rewards']['block'] ) : array() );
+		) + ( ! empty( $rule['rewards']['ok'] ) ? array( 'rewards' => $rule['rewards']['block'] ) : array() )
+			+ ( ! empty( $rule['eligibility'] ) ? array( 'eligibility' => $rule['eligibility'] ) : array() )
+			+ ( ! empty( $rule['conditions'] ) ? array( 'conditions' => $rule['conditions'] ) : array() )
+			+ ( ! empty( $rule['valid_until'] ) ? array( 'valid_until' => $rule['valid_until'] ) : array() );
 	}
 
 	/** One line saying exactly which rule was read. */

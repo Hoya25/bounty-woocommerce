@@ -23,7 +23,6 @@ defined( 'ABSPATH' ) || exit;
 
 final class Open_Bounty_LoyaltyLion {
 
-	const DOLLAR_CURRENCIES = array( 'USD', 'CAD', 'AUD', 'NZD' );
 	const LABEL_KEYS        = array( 'ui.general.points_count_raw', 'ui.general.points_count_raw_react' );
 
 	public static function token( $html ) {
@@ -189,8 +188,9 @@ final class Open_Bounty_LoyaltyLion {
 		}
 
 		$currency = strtoupper( (string) ( isset( $cfg['site']['currency']['code'] ) ? $cfg['site']['currency']['code'] : '' ) );
-		if ( ! in_array( $currency, self::DOLLAR_CURRENCIES, true ) ) {
-			return self::fail( 'currency', __( 'Your LoyaltyLion program doesn\'t earn in dollars, and this sentence says "per dollar".', 'open-bounty' ) );
+		// v0.6: any currency; the sentence says "per dollar" for dollars and "per £1" otherwise.
+		if ( ! Open_Bounty_Rewards::is_currency( $currency ) ) {
+			return self::fail( 'currency', __( 'LoyaltyLion doesn\'t say which currency your program earns in.', 'open-bounty' ) );
 		}
 		if ( ! $label ) {
 			return self::fail( 'label', __( 'LoyaltyLion doesn\'t publish a name for your points.', 'open-bounty' ) );
@@ -219,7 +219,9 @@ final class Open_Bounty_LoyaltyLion {
 	public static function select_rule( array $start, array $cfg, $label ) {
 		$read = self::select_rule_base( $start, $cfg, $label );
 		if ( $read['ok'] ) {
-			$read['rule']['rewards'] = Open_Bounty_Rewards::loyaltylion( $cfg, $read['rule'] );
+			$read['rule']['rewards']     = Open_Bounty_Rewards::loyaltylion( $cfg, $read['rule'] );
+			$read['rule']['eligibility'] = Open_Bounty_Rewards::members( Open_Bounty_Rewards::clean_url( isset( $cfg['site']['settings']['urls']['signup'] ) ? $cfg['site']['settings']['urls']['signup'] : '' ) );
+			$read['rule']['conditions']  = Open_Bounty_Rewards::ll_conditions( isset( $cfg['program']['settings'] ) ? $cfg['program']['settings'] : array(), $read['rule']['label_other'] );
 		}
 		return $read;
 	}

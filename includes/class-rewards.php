@@ -22,12 +22,28 @@ defined( 'ABSPATH' ) || exit;
 
 final class Open_Bounty_Rewards {
 
+	/** The same table as the Shopify app's rewards.ts, so both say amounts byte for byte alike. */
 	const SYMBOLS = array(
 		'USD' => '$',
 		'CAD' => 'CA$',
 		'AUD' => 'A$',
 		'NZD' => 'NZ$',
+		'GBP' => '£',
+		'EUR' => '€',
+		'JPY' => '¥',
+		'INR' => '₹',
+		'MXN' => 'MX$',
+		'HKD' => 'HK$',
+		'BRL' => 'R$',
+		'CNY' => 'CN¥',
+		'KRW' => '₩',
+		'ILS' => '₪',
+		'TWD' => 'NT$',
+		'PHP' => '₱',
+		'VND' => '₫',
 	);
+
+	const DOLLAR_CURRENCIES = array( 'USD', 'CAD', 'AUD', 'NZD' );
 
 	public static function refuse( $reason ) {
 		return array(
@@ -36,13 +52,95 @@ final class Open_Bounty_Rewards {
 		);
 	}
 
-	/** "$5", "$7.50", "A$1": whole amounts without cents. Null for a currency without a known symbol. */
+	/** "$5", "$7.50", "A$1", "£5", "€1,250"; a currency without a symbol here is "SEK 5". */
 	public static function money( $amount, $currency ) {
-		if ( ! isset( self::SYMBOLS[ $currency ] ) ) {
+		$whole = floor( $amount ) == $amount; // phpcs:ignore Universal.Operators.StrictComparisons
+		$n     = number_format( (float) $amount, $whole ? 0 : 2, '.', ',' );
+		return isset( self::SYMBOLS[ $currency ] ) ? self::SYMBOLS[ $currency ] . $n : $currency . ' ' . $n;
+	}
+
+	public static function is_currency( $code ) {
+		return is_string( $code ) && (bool) preg_match( '/^[A-Z]{3}$/', $code );
+	}
+
+	/** "per dollar" for dollars (as every sentence has said); "per £1" otherwise (spec v0.6). */
+	public static function per_unit( $currency ) {
+		return in_array( $currency, self::DOLLAR_CURRENCIES, true ) ? 'per dollar' : 'per ' . self::money( 1, $currency );
+	}
+
+	/* ── v0.6 completeness ────────────────────────────────────────────────── */
+
+	/** An absolute http(s) URL, as the app's cleanUrl() writes it, or null. */
+	public static function clean_url( $raw ) {
+		$s = is_string( $raw ) ? trim( $raw ) : '';
+		if ( 0 === strpos( $s, '//' ) ) {
+			$s = 'https:' . $s;
+		}
+		$p = wp_parse_url( $s );
+		if ( ! $p || empty( $p['host'] ) || ! isset( $p['scheme'] ) || ! in_array( strtolower( $p['scheme'] ), array( 'http', 'https' ), true ) ) {
 			return null;
 		}
-		$whole = floor( $amount ) == $amount; // phpcs:ignore Universal.Operators.StrictComparisons
-		return self::SYMBOLS[ $currency ] . number_format( (float) $amount, $whole ? 0 : 2, '.', ',' );
+		$path = isset( $p['path'] ) && '' !== $p['path'] ? preg_replace( '~/{2,}~', '/', $p['path'] ) : '/';
+		return strtolower( $p['scheme'] ) . '://' . strtolower( $p['host'] ) . ( isset( $p['port'] ) ? ':' . $p['port'] : '' ) . $path
+			. ( isset( $p['query'] ) ? '?' . $p['query'] : '' ) . ( isset( $p['fragment'] ) ? '#' . $p['fragment'] : '' );
+	}
+
+	public static function members( $join_url = null ) {
+		return $join_url ? array( 'who' => 'members', 'join_url' => $join_url ) : array( 'who' => 'members' );
+	}
+
+	private static function counted( $n, $unit ) {
+		return $n . ' ' . $unit . ( 1 === (int) $n ? '' : 's' );
+	}
+
+	public static function condition_pending( $days, $label ) {
+		return array( 'type' => 'pending_period', 'value' => (int) $days, 'note' => ucfirst( $label ) . ' are pending for ' . self::counted( (int) $days, 'day' ) . ' after purchase.' );
+	}
+
+	public static function condition_expires( $count, $unit, $label ) {
+		return array( 'type' => 'points_expire', 'value' => (int) $count, 'note' => ucfirst( $label ) . ' expire after ' . self::counted( (int) $count, $unit ) . ' without account activity.' );
+	}
+
+	public static function condition_min_order( $amount, $currency, $what = 'Purchases earn' ) {
+		$v = ( floor( $amount ) == $amount ) ? (int) $amount : (float) $amount; // phpcs:ignore Universal.Operators.StrictComparisons
+		return array( 'type' => 'min_order', 'value' => $v, 'note' => $what . ' on orders of ' . self::money( $amount, $currency ) . ' or more.' );
+	}
+
+	/** Smile: points expire after a stretch without activity, when the program says so. */
+	public static function smile_conditions( $pp, $label ) {
+		$n    = isset( $pp['points_expiry_interval_count'] ) ? (int) $pp['points_expiry_interval_count'] : 0;
+		$unit = isset( $pp['points_expiry_interval'] ) ? preg_replace( '/s$/', '', (string) $pp['points_expiry_interval'] ) : '';
+		return ( isset( $pp['points_expiry_is_enabled'] ) && true === $pp['points_expiry_is_enabled'] && $n > 0 && in_array( $unit, array( 'day', 'week', 'month', 'year' ), true ) )
+			? array( self::condition_expires( $n, $unit, $label ) )
+			: array();
+	}
+
+	/** Yotpo: what the purchase campaign itself states. Returns array( conditions, valid_until|null ). */
+	public static function yotpo_conditions( $c, $currency, $label ) {
+		$out = array();
+		$min = isset( $c['min_spend_cents'] ) ? (float) $c['min_spend_cents'] / 100 : 0;
+		if ( $min > 0 ) {
+			$out[] = self::condition_min_order( $min, $currency );
+		}
+		$days = isset( $c['delay_reward_days'] ) ? (int) $c['delay_reward_days'] : 0;
+		if ( isset( $c['delay_reward'] ) && true === $c['delay_reward'] && $days > 0 ) {
+			$out[] = self::condition_pending( $days, $label );
+		}
+		$ends = isset( $c['expires_at'] ) && is_string( $c['expires_at'] ) && false !== strtotime( $c['expires_at'] ) ? self::iso( strtotime( $c['expires_at'] ) ) : null;
+		return array( $out, $ends );
+	}
+
+	/** LoyaltyLion: expiry after inactivity, when on. */
+	public static function ll_conditions( $settings, $label ) {
+		$m = isset( $settings['pointExpiryMonths'] ) ? (int) $settings['pointExpiryMonths'] : 0;
+		return ( ! empty( $settings['pointExpiryEnabled'] ) && true === $settings['pointExpiryEnabled'] && isset( $settings['pointExpiryMode'] ) && 'account_inactivity' === $settings['pointExpiryMode'] && $m > 0 )
+			? array( self::condition_expires( $m, 'month', $label ) )
+			: array();
+	}
+
+	/** "2026-12-31T23:59:59.000Z", as the app's toISOString() writes it. */
+	public static function iso( $ts ) {
+		return gmdate( 'Y-m-d\TH:i:s.000\Z', (int) $ts );
 	}
 
 	private static function usable( array $r ) {

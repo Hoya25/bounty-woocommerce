@@ -69,7 +69,7 @@ final class SmileTest extends TestCase {
 		$cases['rule '] = $f;
 
 		$f = self::liquid_death();
-		$f['init']['account']['currency']['iso_code'] = 'EUR';
+		$f['init']['account']['currency']['iso_code'] = '';
 		$cases['currency'] = $f;
 
 		$f = self::liquid_death();

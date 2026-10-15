@@ -58,7 +58,7 @@ final class YotpoTest extends TestCase {
 			array( self::loader( array( 'campaigns' => array( self::campaign( 5, 'entire_cart', 1, 100, array( 'campaign_tiers' => array( array( 'id' => 1 ) ) ) ) ) ) ), 'rule' ),
 			array( self::loader( array( 'campaigns' => array( self::campaign( 3, 'entire_cart', 0 ) ) ) ), 'rule' ),
 			array( self::loader( array( 'tiers' => array( '1.5', '2.0' ) ) ), 'tiers' ),
-			array( self::loader( array( 'currency' => 'GBP' ) ), 'currency' ),
+			array( self::loader( array( 'currency' => '' ) ), 'currency' ),
 			array( self::loader( array( 'redeem' => 0 ) ), 'redeem' ),
 			array( self::loader( array( 'points' => 'Kisses' ) ), 'label' ),
 		);

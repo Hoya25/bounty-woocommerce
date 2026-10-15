@@ -53,7 +53,7 @@ final class LoyaltyLionTest extends TestCase {
 			array( self::LIVE, self::cfg( array( 'extra' => true ) ), self::LABEL, 'rule' ),
 			array( self::LIVE, self::cfg( array( 'limit' => 3 ) ), self::LABEL, 'rule' ),
 			array( self::LIVE, self::cfg( array( 'multiplier' => '2' ) ), self::LABEL, 'rule' ),
-			array( self::LIVE, self::cfg( array( 'currency' => 'gbp' ) ), self::LABEL, 'currency' ),
+			array( self::LIVE, self::cfg( array( 'currency' => '' ) ), self::LABEL, 'currency' ),
 			array( self::LIVE, self::cfg(), null, 'label' ),
 			array( self::LIVE, self::cfg( array( 'rewards' => 0 ) ), self::LABEL, 'redeem' ),
 		);

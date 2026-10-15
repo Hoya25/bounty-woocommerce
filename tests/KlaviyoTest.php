@@ -116,7 +116,7 @@ final class KlaviyoTest extends TestCase {
 			$this->assertFalse( $r['ok'], "case $i" );
 			$this->assertSame( $step, $r['step'], "case $i: " . $r['message'] );
 		}
-		$r = Open_Bounty_Klaviyo::describe_coupon( self::coupon(), $static, 'GBP', self::NOW );
+		$r = Open_Bounty_Klaviyo::describe_coupon( self::coupon(), $static, '', self::NOW );
 		$this->assertSame( 'currency', $r['step'] );
 	}
 }

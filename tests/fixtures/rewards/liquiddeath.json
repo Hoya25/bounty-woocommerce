@@ -294,7 +294,7 @@
       "customized_fulfill_reason_text_template": null,
       "customized_image_temp_s3_key": null,
       "customized_image_url": null,
-      "rewarded_count": 435499,
+      "rewarded_count": 435506,
       "reward_value_type": "fixed",
       "default_sort_order": 5,
       "multiplier": null,
@@ -332,7 +332,7 @@
       "customized_fulfill_reason_text_template": null,
       "customized_image_temp_s3_key": null,
       "customized_image_url": null,
-      "rewarded_count": 629387,
+      "rewarded_count": 629390,
       "reward_value_type": "variable",
       "default_sort_order": 1000000000000,
       "multiplier": 1,
@@ -6082,5 +6082,21 @@
   "ok": false,
   "reason": "Smile.io lists no reward with a stated worth (money off or percent off an order), so what points are worth can't be said."
  },
- "sentence_ok": true
+ "sentence_ok": true,
+ "expected_v06": {
+  "sentence": "Members earn 1 Skull per dollar, redeemable at checkout.",
+  "currency": "USD",
+  "eligibility": {
+   "who": "members",
+   "join_url": "http://liquiddeath.com/account/register"
+  },
+  "conditions": [
+   {
+    "type": "points_expire",
+    "value": 365,
+    "note": "Skulls expire after 365 days without account activity."
+   }
+  ],
+  "valid_until": null
+ }
 }

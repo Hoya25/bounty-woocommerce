@@ -26,7 +26,6 @@ defined( 'ABSPATH' ) || exit;
 
 final class Open_Bounty_Klaviyo {
 
-	const DOLLAR_CURRENCIES = array( 'USD', 'CAD', 'AUD', 'NZD' );
 	/** The coupon block's default text in Klaviyo's editor, left unchanged (kosas.com). Not a code. */
 	const PLACEHOLDER = '~^enter coupon$~i';
 
@@ -182,9 +181,9 @@ final class Open_Bounty_Klaviyo {
 			/* translators: %s: code */
 			return self::fail( 'scope', sprintf( __( 'The coupon %s has a maximum order amount, which this sentence can\'t state.', 'open-bounty' ), $named ) );
 		}
-		if ( ! in_array( $currency, self::DOLLAR_CURRENCIES, true ) ) {
-			/* translators: %s: currency */
-			return self::fail( 'currency', sprintf( __( 'Your store\'s currency is %s, and this sentence states amounts in dollars.', 'open-bounty' ), $currency ? $currency : '?' ) );
+		// v0.6: any currency.
+		if ( ! Open_Bounty_Rewards::is_currency( $currency ) ) {
+			return self::fail( 'currency', __( 'WooCommerce didn\'t say which currency your store uses.', 'open-bounty' ) );
 		}
 
 		$amount = (float) $c['amount'];
@@ -231,6 +230,13 @@ final class Open_Bounty_Klaviyo {
 				// Once per customer, or a single-use code: Klaviyo's article suggests a usage limit of 1, but it's optional.
 				'once'       => 1 === (int) $c['usage_limit_per_user'] || ( 'unique' === $ref['kind'] && 1 === (int) $c['usage_limit'] ),
 				'id'         => (int) $c['id'],
+				// v0.6: the same facts as fields.
+				'facts'      => array(
+					'min'        => (float) $c['minimum_amount'],
+					'expires'    => $expires,
+					'individual' => ! empty( $c['individual_use'] ),
+					'currency'   => $currency,
+				),
 			),
 		);
 	}
@@ -252,9 +258,53 @@ final class Open_Bounty_Klaviyo {
 		return 'New ' . implode( ' or ', $names ) . ' subscribers get ' . $worth . $tail . '.';
 	}
 
+	/**
+	 * Pure: the v0.6 fields, from the same coupon the sentence came from. Every
+	 * note is fixed words plus a field; nothing is read from the form's text.
+	 */
+	public static function offer_fields( array $offer, array $ref ) {
+		$f          = isset( $offer['facts'] ) ? $offer['facts'] : array();
+		$currency   = isset( $f['currency'] ) ? $f['currency'] : '';
+		$conditions = array();
+		if ( ! empty( $f['min'] ) && $f['min'] > 0 ) {
+			$min          = ( floor( $f['min'] ) == $f['min'] ) ? (int) $f['min'] : (float) $f['min']; // phpcs:ignore Universal.Operators.StrictComparisons
+			$conditions[] = array( 'type' => 'min_order', 'value' => $min, 'note' => 'On orders of ' . Open_Bounty_Rewards::money( $f['min'], $currency ) . ' or more.' );
+		}
+		if ( ! empty( $offer['once'] ) ) {
+			$conditions[] = array( 'type' => 'once_per_customer', 'note' => 'One use per customer.' );
+		}
+		if ( ! empty( $f['expires'] ) ) {
+			$conditions[] = array( 'type' => 'limited_time', 'note' => 'Through ' . gmdate( 'M j, Y', (int) $f['expires'] ) . '.' );
+		}
+		$names = array_map(
+			function ( $ch ) {
+				return 'email' === $ch ? 'email' : 'text';
+			},
+			$ref['channels']
+		);
+		$out = array(
+			'currency'    => $currency,
+			'eligibility' => array( 'who' => 'new_subscribers', 'note' => 'For new ' . implode( ' or ', $names ) . ' subscribers.' ),
+		);
+		if ( $conditions ) {
+			$out['conditions'] = $conditions;
+		}
+		if ( ! empty( $f['expires'] ) ) {
+			$out['valid_until'] = Open_Bounty_Rewards::iso( $f['expires'] );
+		}
+		// WooCommerce's "Individual use only" is the coupon's own stacking setting.
+		if ( isset( $f['individual'] ) ) {
+			$out['stacking'] = $f['individual']
+				? array( 'combinable' => false, 'note' => 'Doesn\'t combine with other coupons.' )
+				: array( 'combinable' => true, 'note' => 'Combines with other coupons.' );
+		}
+		return $out;
+	}
+
 	public static function build_object( array $read, $store_name, $store_url ) {
+		$fields = self::offer_fields( $read['offer'], $read['ref'] );
 		return array(
-			'bounty_schema_version' => '0.4',
+			'bounty_schema_version' => '0.6',
 			'active'                => true,
 			'program'               => array(
 				'name' => $store_name,
@@ -264,8 +314,7 @@ final class Open_Bounty_Klaviyo {
 				'display' => self::compose( $read['offer'], $read['ref'] ),
 				'type'    => 'other',
 			),
-			'updated_at'            => gmdate( 'Y-m-d' ),
-		);
+		) + $fields + array( 'updated_at' => gmdate( 'Y-m-d' ) );
 	}
 
 	public static function provenance( array $read ) {
@@ -311,6 +360,7 @@ final class Open_Bounty_Klaviyo {
 			'limit_usage_to_x_items'      => (int) $c->get_limit_usage_to_x_items(),
 			'minimum_amount'              => (float) $c->get_minimum_amount(),
 			'maximum_amount'              => (float) $c->get_maximum_amount(),
+			'individual_use'              => (bool) $c->get_individual_use(),
 		);
 	}
 
