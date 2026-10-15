@@ -30,7 +30,7 @@ Before you publish, none of this exists. Your store looks exactly as it did befo
 
 You need WordPress 6.4 or later, WooCommerce 8.0 or later, and PHP 7.4 or later.
 
-1. Download **`open-bounty-1.5.0.zip`** from the
+1. Download **`open-bounty-1.7.0.zip`** from the
    [Releases page](https://github.com/Hoya25/bounty-woocommerce/releases). Don't unzip it.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, choose the zip, and click
    **Install Now**, then **Activate**.
@@ -95,6 +95,11 @@ Choose **which program funds your bounty**:
   worth, taken from a reward with a stated value such as "250 Points = $5 off at checkout". It
   lists your tiers, and your entry tier's perks where the program shows them as included. If any
   part can't be read truthfully, your bounty publishes without it and the settings page says why.
+
+- **Who it's for, conditions and dates** (version 1.7.0): every option above also publishes, in
+  structure, who the bounty is for and the conditions your program or coupon states. Examples
+  are a minimum order, points that are pending or expire, and one use per customer, plus an end
+  date where there is one. Any currency works: "Members earn 5 points per £1".
 
 - **Okendo Loyalty** isn't an option. Okendo runs only on Shopify and has no WooCommerce version,
   so there's no Okendo program on a WooCommerce store to read. The settings page says so.

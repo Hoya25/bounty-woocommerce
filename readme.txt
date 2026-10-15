@@ -25,7 +25,7 @@ Nothing is published until you click Validate and publish. Every description is 
 
 == Installation ==
 
-1. Plugins → Add New Plugin → Upload Plugin, choose open-bounty-1.5.0.zip, Install Now, Activate.
+1. Plugins → Add New Plugin → Upload Plugin, choose open-bounty-1.7.0.zip, Install Now, Activate.
 2. WooCommerce → Bounty.
 3. Choose NCTR Alliance (only if your store is connected to it) or Describe your own reward, then Validate and publish.
 
@@ -42,6 +42,12 @@ Only api.nctr.live: to fetch the standard it validates against (cached for 10 mi
 WooCommerce → Bounty → Stop publishing. Deactivating or deleting the plugin does the same.
 
 == Changelog ==
+
+= 1.7.0 =
+* Open Bounty Schema v0.6. Smile.io, Yotpo Loyalty, LoyaltyLion and the Klaviyo welcome offer now work in any currency ("Members earn 5 points per £1"). They also publish who the bounty is for, the conditions the program states (a minimum order, points pending or expiring, one use per customer), end dates, and for Klaviyo whether the coupon combines with others.
+* The rewards line on product pages is now a labeled region (data-bounty-display), so shopping assistants that use a browser can find it. It still shows by default and can be turned off.
+* Outside its start and end dates, a bounty isn't shown on product pages.
+* The validator reads sentences given in several languages.
 
 = 1.6.0 =
 * "Use my Klaviyo welcome offer": states the coupon your live Klaviyo signup forms hand out (a coupon block) as a bounty for new subscribers, worded from that coupon's settings in WooCommerce. The form's own wording is never read; if the coupon can't be read, nothing is published.
