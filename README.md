@@ -81,6 +81,12 @@ Choose **which program funds your bounty**:
   targets, not WooCommerce. A custom install that loads LoyaltyLion's script on your pages can be
   read.
 
+- **What your points are worth, your tiers and your perks** (version 1.5.0): the three loyalty
+  options also publish a `rewards` block from the same live program. It says what points are
+  worth, taken from a reward with a stated value such as "250 Points = $5 off at checkout". It
+  lists your tiers, and your entry tier's perks where the program shows them as included. If any
+  part can't be read truthfully, your bounty publishes without it and the settings page says why.
+
 - **Okendo Loyalty** isn't an option. Okendo runs only on Shopify and has no WooCommerce version,
   so there's no Okendo program on a WooCommerce store to read. The settings page says so.
 
