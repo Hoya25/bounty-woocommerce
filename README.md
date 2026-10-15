@@ -30,7 +30,7 @@ Before you publish, none of this exists. Your store looks exactly as it did befo
 
 You need WordPress 6.4 or later, WooCommerce 8.0 or later, and PHP 7.4 or later.
 
-1. Download **`open-bounty-1.4.0.zip`** from the
+1. Download **`open-bounty-1.4.1.zip`** from the
    [Releases page](https://github.com/Hoya25/bounty-woocommerce/releases). Don't unzip it.
 2. In WordPress, go to **Plugins → Add New Plugin → Upload Plugin**, choose the zip, and click
    **Install Now**, then **Activate**.
@@ -80,6 +80,9 @@ Choose **which program funds your bounty**:
   **Good to know:** LoyaltyLion lists Shopify, Adobe Commerce and custom platforms as install
   targets, not WooCommerce. A custom install that loads LoyaltyLion's script on your pages can be
   read.
+
+- **Okendo Loyalty** isn't an option. Okendo runs only on Shopify and has no WooCommerce version,
+  so there's no Okendo program on a WooCommerce store to read. The settings page says so.
 
 Then click **Validate and publish**.
 

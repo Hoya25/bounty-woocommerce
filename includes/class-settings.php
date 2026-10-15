@@ -230,6 +230,10 @@ final class Open_Bounty_Settings {
 							— <?php echo esc_html( sprintf( /* translators: %s: provider */ __( 'reads your points program\'s earning rule directly from %s.', 'open-bounty' ), $p['label'] ) ); ?>
 						</label>
 					<?php endforeach; ?>
+					<?php // Okendo Loyalty is a Shopify app with no WooCommerce version: there is no program to read, so it is a note, not a choice. ?>
+					<p class="description open-bounty-unavailable" style="margin-top:.8em;max-width:46em">
+						<?php esc_html_e( 'Okendo Loyalty: not available here. Okendo runs only on Shopify and has no WooCommerce version, so there is no Okendo program on a WooCommerce store to read.', 'open-bounty' ); ?>
+					</p>
 				</fieldset>
 
 				<table class="form-table" role="presentation" data-mode="alliance">
