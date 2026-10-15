@@ -254,6 +254,10 @@ final class Open_Bounty_Settings {
 					<p class="description open-bounty-unavailable" style="margin-top:.8em;max-width:46em">
 						<?php esc_html_e( 'Okendo Loyalty: not available here. Okendo runs only on Shopify and has no WooCommerce version, so there is no Okendo program on a WooCommerce store to read.', 'open-bounty' ); ?>
 					</p>
+					<?php // Rivo describes itself as built exclusively for Shopify, and its program settings come from a Shopify theme app embed. ?>
+					<p class="description open-bounty-unavailable" style="max-width:46em">
+						<?php esc_html_e( 'Rivo: not available here. Rivo is built only for Shopify and has no WooCommerce version, so there is no Rivo program on a WooCommerce store to read.', 'open-bounty' ); ?>
+					</p>
 				</fieldset>
 
 				<table class="form-table" role="presentation" data-mode="alliance">
